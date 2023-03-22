@@ -47,16 +47,22 @@ table {
 	border-spacing: 0;
 }
 
-$body-color: rgba(204, 231, 204, 0.692);
+@import '_main_content';
+@import '_mixins_variables';
+@import '_new_todo_modal';
+@import '_todo_container';
+@import '_nav';
+
+
 
 body {
-  background-color: $body-color;
+  @include standardBorder;
+  background-color: $body-colour;
   display: grid;
   justify-content: center;
   align-items: center;
   justify-items: center;
   align-content: center;
-  border: 1px solid grey;
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -74,47 +80,7 @@ body {
  
 }
 
-#nav {
-  background-color: rgba(255, 228, 196, 0.418);
-  grid-row: 1;
-  grid-column: 1 / -1;
-  border: 1px solid grey;
-  display: grid;
-  align-items: center;
-  padding: 0.5rem;
-  ul {
-  display: grid;
-  grid-template-columns: 50px 50px 10fr 50px 50px; 
-  justify-content: center;
-  align-items: center;
-  font-family: monospace;
-  font-size: 14px;
-  padding: 0.8rem;
-}
-  button {
-    border: none;
-    background-color: none;
-    background: none;
-  }
-}
 
-#nav > ul > li:nth-child(1) {
-  grid-column: 1;
-}
-
-#nav > ul > li:nth-child(2) {
-  grid-column: 2;
-}
-#nav > ul > li:nth-child(3) {
-  grid-column: 5;
-}
-
-#nav > ul > li:nth-child(4) {
-  border-left: 1px solid grey;
-  padding-left: 10px;
-  grid-column: 3;
-  grid-row: 1;
-}
 
 ul, li, a {
   list-style-type: none;
@@ -127,31 +93,42 @@ h2 {
   font-family: monospace;
 }
 #sidebar {
+  @include standardBorder;
   background-color: rgba(151, 229, 216, 0.37);
   grid-row: 2;
   grid-column: 1;
   display: grid;
+  grid-template-columns: 1fr;
   padding: 1.5rem;
+  min-width: 120px;
   ul {
-  
     display: grid;
     gap: 20px;
     height: fit-content;
   }
   ul > li {
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid $border-colour;
   }
-  border: 1px solid grey;
+  h2 {
+    grid-column: 1;
+  }
+  button {
+     border: none;
+    position: absolute;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-top: 70px;
+    // margin-left: 100px;
+    justify-self: end;
+    background:none;
+  }
 }
 
-#main-content {
-  grid-row: 2;
-  grid-column: 2;
-  border: 1px solid grey;
-}
 
 #hamburger-menu-btn > img,
- #new-todo-nav-btn > img {
+ #new-todo-nav-btn > img,
+ #new-project-btn > img {
   width: 30px;
   filter: drop-shadow(rgb(250, 250, 250) 1px 1px 1px)
 }
