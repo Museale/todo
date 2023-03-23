@@ -3,48 +3,129 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 @import '_main_content';
@@ -52,8 +133,6 @@ table {
 @import '_new_todo_modal';
 @import '_todo_container';
 @import '_nav';
-
-
 
 body {
   @include standardBorder;
@@ -68,21 +147,19 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-
 }
 #wrapper {
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr 5fr;
-  grid-template-rows: 1fr 10fr;
+  grid-template-rows: 1fr 14fr;
   height: 98vh;
   width: 98vw;
- 
 }
 
-
-
-ul, li, a {
+ul,
+li,
+a {
   list-style-type: none;
   text-decoration: none;
   color: black;
@@ -113,7 +190,7 @@ h2 {
     grid-column: 1;
   }
   button {
-     border: none;
+    border: none;
     position: absolute;
     border-radius: 50%;
     width: 30px;
@@ -121,14 +198,13 @@ h2 {
     margin-top: 70px;
     // margin-left: 100px;
     justify-self: end;
-    background:none;
+    background: none;
   }
 }
 
-
 #hamburger-menu-btn > img,
- #new-todo-nav-btn > img,
- #new-project-btn > img {
+#new-todo-nav-btn > img,
+#new-project-btn > img {
   width: 30px;
-  filter: drop-shadow(rgb(250, 250, 250) 1px 1px 1px)
+  filter: drop-shadow(rgb(250, 250, 250) 1px 1px 1px);
 }

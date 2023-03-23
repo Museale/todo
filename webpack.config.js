@@ -12,23 +12,19 @@ module.exports = {
   devServer: {
     static: './dist',
   },
-  plugins:  [
-      new HtmlWebpackPlugin({
-        title: 'Custom template',
-        // Load a custom template (lodash by default)
-        template: './src/index.ejs'
-      })
-    ],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Custom template',
+      // Load a custom template (lodash by default)
+      template: './src/index.ejs',
+    }),
+  ],
 
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader",
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -36,5 +32,4 @@ module.exports = {
       },
     ],
   },
-
 };

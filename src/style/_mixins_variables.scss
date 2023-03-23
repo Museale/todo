@@ -1,15 +1,14 @@
 $body-colour: rgba(204, 231, 204, 0.692);
 $border-colour: rgba(128, 128, 128, 0.432);
 
-
-@mixin centerAll () {
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    align-content: center;
+@mixin centerAll() {
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
 }
 
-@mixin standardBorder () {
-    border: 1px solid rgba(128, 128, 128, 0.432);
-    border-radius: 5px;
+@mixin standardBorder() {
+  border: 1px solid rgba(128, 128, 128, 0.432);
+  border-radius: 5px;
 }

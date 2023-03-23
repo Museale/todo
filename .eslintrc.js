@@ -14,6 +14,9 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "curly": "error",
+        "eqeqeq": "off",
+        "no-unused-expressions": "off",
+        "no-unused-vars": "off",
     }
 }
-
