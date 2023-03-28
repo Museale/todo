@@ -1,14 +1,8 @@
-export const newTodo = (title, description, dueDate, priority, notes) => {
+export const newTodo = (title, description, dueDate, priority) => {
   return {
     title,
     description,
     dueDate,
     priority,
-    notes,
   };
 };
-
-export const renderTodoModal = () => {
-   
-
-}

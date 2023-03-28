@@ -1,6 +1,7 @@
 import './style/style.scss';
 import { renderDOM } from './DOM_module';
 import { newTodo } from './todo_module';
+import { eventHandler } from './event_handler';
 
 const render = (() => {
     renderDOM();
