@@ -1,7 +1,6 @@
 @import '_mixins_variables';
 
 #modal {
- 
     position: absolute;
     left: 50%;
     top: 38%; 
@@ -9,8 +8,8 @@
     margin-top: -150px;
  
     
-}
-#modal > form {
+// }
+// #modal > form {
     justify-self: center;
     align-self: center;
     align-content: center;
@@ -41,8 +40,13 @@ label  {
    border: none;
    appearance: none;
    background-color: white;
-
+   cursor: pointer;
+   font-family: monospace;
+   font-weight: bolder;
+   font-size: 15px;
+   color: gray;
 }
+
 #title-input {
     grid-column: 1 / span 3;
     font-size: 22px;
@@ -59,13 +63,20 @@ label  {
     margin-top: -20px;
 }
 
-#modal > form > input {
+#modal  > input {
     height: 40px;
     border: none;
     outline: none;
+    padding: 0.2rem;
 }
 
-#modal > form > #priority-btn  {
+#modal > #description-input:-internal-autofill-selected{ 
+    appearance: none;
+    outline:none;
+    background-color: white !important;
+}
+
+#modal > #priority-btn  {
     grid-row: 6;
     grid-column: 2;
     justify-self: flex-end;
@@ -75,7 +86,9 @@ label  {
         border: $border-colour 1px solid;
         font-family: monospace;
         color:rgb(83, 83, 83);
+        cursor: pointer;
     }
+    
     :nth-child(1) {
         background-color: rgb(239, 241, 243);
     }
@@ -88,10 +101,9 @@ label  {
     :nth-child(4) {
         background-color: rgb(241, 132, 132);
     }
-
 }
 
-#modal > form > #save-todo {
+#modal  > #save-todo {
     grid-row: 6;
     grid-column: 3;
     border: 1px solid $body-colour;
@@ -101,6 +113,7 @@ label  {
     justify-self: flex-end;
       color: rgb(83, 82, 82);
         font-family: monospace;
+        cursor: pointer;
 }
 
 #date {
@@ -109,4 +122,9 @@ label  {
     width: 110px;
     color: gray;
     font-family: monospace;
+    cursor: pointer;
+}
+
+.hidden {
+    visibility: hidden;
 }

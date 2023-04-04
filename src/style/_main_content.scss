@@ -9,10 +9,11 @@
   grid-template-rows: 1fr 10fr;
   padding: 1rem 5rem 1rem 5rem;
   gap: 0.5rem;
+  width: 60%;
 }
 
 #week {
-  @include standardBorder;
+
   @include centerAll;
   grid-row: 1;
   display: grid;
@@ -32,6 +33,6 @@
 }
 
 #todo-container {
-  @include standardBorder;
+
   grid-row: 2;
 }

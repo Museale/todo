@@ -2,7 +2,9 @@ import hamburgerIcon from './icons/Hamburgermenu-icon.png';
 import plusIcon from './icons/plus-circle-icon.png';
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
+import getMonth from 'date-fns/getMonth';
 import { el } from 'date-fns/locale';
+import { newTodo, todos } from './todo_module';
 
 export const renderDOM = () => {
     
@@ -11,15 +13,13 @@ export const renderDOM = () => {
         const daysOfTheWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   
          const weekdaysContainer = document.getElementById('week');
-         const modalDate = document.getElementById('date');
 
             const date = new Date();
             const dayOne = daysOfTheWeek[date.getDay()];
           
             const startIndex = daysOfTheWeek.indexOf(dayOne);
             const currentWeek = [dayOne];
-            modalDate.value = 'today';
-
+       
             for (let i = startIndex + 1; i !== startIndex; i = (i + 1) % daysOfTheWeek.length) {
                 currentWeek.length < 4 ? currentWeek.push(daysOfTheWeek[i]) : false;
                 }
@@ -60,73 +60,50 @@ export const renderDOM = () => {
 
     })();
 
-    return {
-        appendImages, 
-        appendDays
 
+    return {
+        appendImages,
+        appendDays, 
+    
     }
 };
 
-// export const todoModal = (() => {
-//     const createModal = (() => {
-//         const todoContainer = document.getElementById('todo-container');
-        
-//         const modal = document.createElement('div');
-//         modal.id = 'modal';
-//         modal.style.visibility = 'hidden';
-//         todoContainer.appendChild(modal);
+export const renderTodos = () => {
 
-//         const closeModal = document.createElement('button');
-//         closeModal.textContent = 'X';
-//         closeModal.id = 'close-modal-btn';
+    const todoContainer = document.getElementById('todo-container');
+   
+    todos.allTodos.forEach(e => {console.log(
+        e
+    )})
 
-//         const title = document.createElement('input');
-//         title.setAttribute('type', 'text');
-//         title.id = 'title';
+    const newtodo = document.createElement('div');
+    newtodo.id = 'new-todo-div'
+    newtodo.classList.add = 'todo';
+    
+    const checkbox = document.createElement('input'); 
+    checkbox.setAttribute('type', 'checkbox');
+     
+    const displayTitle = document.createElement('div');
+    displayTitle.id = 'display-title';
+    displayTitle.textContent = todos.getTodos().title;
 
-//         const description = document.createElement('input');
-//         description.setAttribute('type', 'text');
-//         description.id = 'description';
+    const displayDescription = document.createElement('div');
+    displayDescription.id = 'display-description';
+    displayDescription.textContent = todos.getTodos().description;
 
-//         const priority = document.createElement('select');
-//         priority.id = 'priority';
+    const displayDueDate = document.createElement('span');
+    const month = new Date(todos.getTodos().dueDate);
+  
+    const date = document.createElement('button');
+    date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
+    displayDueDate.appendChild(date)
+    
 
-//             const red = document.createElement('option');
-//             red.style.backgroundColor = 'red';
+    const todoContent =  [checkbox, displayTitle, displayDescription, displayDueDate];
 
-//             const orange = document.createElement('option');
-//             orange.style.backgroundColor = 'orange';
+    todoContent.forEach(e => {
+        newtodo.appendChild(e);
+    })
 
-//             const green = document.createElement('option');
-//             green.textContent = 'Green'
-//             green.setAttribute('selected', 'selected');
-//             green.style.color = 'green';
-
-//         const options = [red, orange, green];
-//         const inputFields = [title, closeModal, description, priority];
-
-//         inputFields.forEach(input => modal.appendChild(input));
-
-//         options.forEach(option => priority.appendChild(option));
-
-//         return {
-//             todoContainer, 
-//             closeModal,
-//             modal
-//         }})();
-
-//         const handleEvent = (() => {
-//             const addTodoBtn = document.getElementById('new-todo-nav-btn');
-//             addTodoBtn.addEventListener('click', () => {
-//                 createModal.modal.style.visibility = 'visible';
-//             });
-//             createModal.closeModal.addEventListener('click', () => {
-//                 createModal.modal.style.visibility = 'hidden';
-//             })
-//         }
-// )()
-
-// })()
-
-
-
+    todoContainer.appendChild(newtodo);
+};

@@ -42,9 +42,8 @@
                     
                 </div>
             </div>
-            <div id="modal">
-                <form action="">
-               
+            <div id="modal" class="hidden">
+            
                     <button id="close-modal">X</button>
                     <label for="title">title</label>
                     <input type="text" placeholder="Task Name" name="title" id="title-input">
@@ -53,7 +52,7 @@
                     <label for="date">Date</label>
                     <input type ="date" name="date" id="date">
                     <div id="priority-btn">
-                        <select>
+                        <select id="priority">
                             <option id="Default" selected>Priority</option>
                             <option id="green">Priority 1</option>
                             <option id="orange">Priority 2</option>
@@ -63,8 +62,7 @@
                     </div>
                     <label for="save-todo"></label>
                     <input type="submit" id="save-todo" name="save-todo">
-                </form>
-
+           
             </div>
     </div>
 </body>
