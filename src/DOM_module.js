@@ -92,12 +92,12 @@ export const renderTodos = () => {
     displayDescription.textContent = todos.getTodos().description;
 
     const displayDueDate = document.createElement('span');
+
     const month = new Date(todos.getTodos().dueDate);
   
     const date = document.createElement('button');
     date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
     displayDueDate.appendChild(date)
-    
 
     const todoContent =  [checkbox, displayTitle, displayDescription, displayDueDate];
 

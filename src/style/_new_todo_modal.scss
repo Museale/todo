@@ -2,14 +2,10 @@
 
 #modal {
     position: absolute;
-    left: 50%;
+    left: 40%;
     top: 38%; 
     margin-left: -150px;
     margin-top: -150px;
- 
-    
-// }
-// #modal > form {
     justify-self: center;
     align-self: center;
     align-content: center;
@@ -23,7 +19,7 @@
     border-radius: 5px;
     width: 550px;
     gap: 3px;
-    padding: 15px;
+    padding: 1.2rem;
     position: absolute;
     box-shadow: 2px 2px 12px rgb(190, 189, 189);
   
@@ -33,6 +29,7 @@ label  {
     visibility: hidden;
     display: none;
 }
+
 #close-modal {
    position: absolute;
    justify-self: flex-end;
@@ -45,6 +42,7 @@ label  {
    font-weight: bolder;
    font-size: 15px;
    color: gray;
+   padding: 10px;
 }
 
 #title-input {

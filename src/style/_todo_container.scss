@@ -14,35 +14,54 @@
     justify-content: center;
     align-items: start;
     height: fit-content;
-    gap: 20px;
+    gap: 10px;
     padding: 2rem;
     width: 100%;
 }
 
+#todo-container > div:nth-child(1) {
+    border-top: 1px solid $border-colour;
+    padding-top: 10px;
+}
+
 #new-todo-div {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: 100%;
-    height: 2rem;
+    grid-template-columns: 48px 1fr 1fr;
+    grid-template-rows: 1fr 1fr;    
     padding: 0.2rem;
     align-items: center;
-    background-color: rgba(204, 206, 207, 0.233);
+    border-bottom: 1px $border-colour solid;
         span {
-            
+
             justify-self: end;
 
             button {
             appearance: none;
             border: none;
-            background-color: none;
+            background-color: white;
             color: red;
                 }
 
         }
 }
 
+#display-title {
+    font-size: 16px;
+    font-family: monospace;
+}
+#display-description {
+    color: rgb(88, 88, 88);
+    font-size: 11px;
+    font-family: monospace;
+    grid-row: 2;
+    grid-column: 2;
+}
 input[type="checkbox"] {
     height: 24px;
     width: 24px;
 }
 
+#new-todo-div > span::before {
+    content: "Due";
+    color: gray;
+}

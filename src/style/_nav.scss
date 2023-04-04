@@ -1,11 +1,12 @@
 #nav {
-  background-color: #c4deff;
+  background-color: #147eff33;
   grid-row: 1;
   grid-column: 1 / -1;
   // @include standardBorder;
   display: grid;
   align-items: center;
   padding: 0.5rem;
+  height: 30px;
   ul {
     display: grid;
     grid-template-columns: 50px 50px 10fr 50px 50px;
@@ -13,7 +14,8 @@
     align-items: center;
     font-family: monospace;
     font-size: 14px;
-    padding: 0.8rem;
+    margin: 0 1rem 0 1rem;
+    
   }
   button {
     border: none;
