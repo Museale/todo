@@ -2,34 +2,42 @@ import { addMonths } from "date-fns";
 import getDate from "date-fns/getDate";
 import getDay from "date-fns/getDay";
 import { newTodo, getTodos, todos } from "./todo_module";
-import { renderDOM, renderTodos } from './DOM_module';
-
-
+import { renderDOM, renderTodos, getByID, deleteMaincontent } from './DOM_module';
+import { renderProjects } from "./projects";
 import _ from "date-fns";
 
 export const events = (() => {
 
-    const openModal = document.getElementById('new-todo-nav-btn');
-    const newTodoModal = document.getElementById('modal');
-    const closeModal = document.getElementById('close-modal');
-    const submitTodo = document.getElementById('save-todo');
+    getByID.openModal.addEventListener('click', () => {
+        getByID.newTodoModal.classList.remove('hidden');
+    });
 
-    openModal.addEventListener('click', () => {
-        newTodoModal.classList.remove('hidden');
-
-    })
-
-    closeModal.addEventListener('click', () => {
-        newTodoModal.classList.add('hidden');
-    })
+    getByID.closeModal.addEventListener('click', () => {
+        getByID.newTodoModal.classList.add('hidden');
+    });
    
-    submitTodo.addEventListener('click', () => {
-        renderTodos();
+    getByID.submitTodo.addEventListener('click', () => {
+        renderTodos.createNewTodo()
         todos.getTodos();
-        newTodoModal.classList.add('hidden');
+        getByID.newTodoModal.classList.add('hidden');
+    });
     
-    })
-    
+    getByID.projectTitle.addEventListener('click', () => {
+        deleteMaincontent()
+        renderProjects();
+    }); 
+
+    getByID.todaySidebar.addEventListener('click', () => {
+        console.log('todays todos')
+        deleteMaincontent();
+        getByID.mainContent.appendChild(renderTodos.todaysTodosContainer);
+
+    });
+
+    getByID.upcoming.addEventListener('click', () => {
+        getByID.mainContent.appendChild(renderTodos.todoContainer);
+    });
+
 })();
 
 

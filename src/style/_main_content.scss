@@ -14,7 +14,6 @@
   justify-content: center;
   align-content: center;
   justify-items: center;
-
 }
 
 #week {
@@ -24,7 +23,7 @@
   display: grid;
   gap: 10px;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   font-size: 22px;
   font-weight: light;
   font-family: monospace;
