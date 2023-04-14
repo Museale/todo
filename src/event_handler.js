@@ -16,6 +16,11 @@ export const events = (() => {
         getByID.newTodoModal.classList.add('hidden');
     });
    
+    // document.body.addEventListener('load', () => {
+    //     renderTodos.createNewTodo()
+    //     todos.getTodos();
+    // })
+    
     getByID.submitTodo.addEventListener('click', () => {
         renderTodos.createNewTodo()
         todos.getTodos();
@@ -31,10 +36,12 @@ export const events = (() => {
         console.log('todays todos')
         deleteMaincontent();
         getByID.mainContent.appendChild(renderTodos.todaysTodosContainer);
+        
 
     });
 
     getByID.upcoming.addEventListener('click', () => {
+        deleteMaincontent()
         getByID.mainContent.appendChild(renderTodos.todoContainer);
     });
 

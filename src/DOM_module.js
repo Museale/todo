@@ -5,6 +5,7 @@ import getDay from 'date-fns/getDay';
 import getMonth from 'date-fns/getMonth';
 import { el } from 'date-fns/locale';
 import { newTodo, todos } from './todo_module';
+import { getYear } from 'date-fns';
 
 export const getByID = (() => {
     const mainContent = document.querySelector('#main-content');
@@ -23,6 +24,10 @@ export const getByID = (() => {
     const personalSidebar = document.getElementById('personal-sidebar');
     const workSidebar = document.getElementById('work-sidebar');
     const highPrioritySidebar = document.getElementById('high-pri-sidebar');
+    const title = document.getElementById('title-input');
+    const description = document.getElementById('description-input');
+    const dueDate = document.getElementById('date');
+    const priority = document.getElementById('priority');
 
     return {
         mainContent,
@@ -40,7 +45,11 @@ export const getByID = (() => {
         upcoming,
         personalSidebar, 
         workSidebar,
-        highPrioritySidebar
+        highPrioritySidebar,
+        title,
+        description,
+        dueDate,
+        priority
     }
 })();
 
@@ -118,7 +127,7 @@ export const renderTodos = (() => {
       
 
         const createNewTodo = () => {
-
+            todos.getTodos();
             const newtodo = document.createElement('div');
             newtodo.id = 'new-todo-div';
             newtodo.classList.add = 'todo';
@@ -128,15 +137,15 @@ export const renderTodos = (() => {
             
             const displayTitle = document.createElement('div');
             displayTitle.id = 'display-title';
-            displayTitle.textContent = todos.getTodos().title;
+            displayTitle.textContent = getByID.title.value;
 
             const displayDescription = document.createElement('div');
             displayDescription.id = 'display-description';
-            displayDescription.textContent = todos.getTodos().description;
-
+            displayDescription.textContent = getByID.description.value;
+     
             const displayDueDate = document.createElement('span');
 
-            const month = new Date(todos.getTodos().dueDate);
+            const month = new Date(getByID.dueDate.value);
         
             const date = document.createElement('button');
             date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
@@ -149,7 +158,7 @@ export const renderTodos = (() => {
             })
 
             todoContainer.appendChild(newtodo);
-         
+    
         }
     return {
         todoContainer,
