@@ -24,7 +24,7 @@
                 <ul>
                     <li id="today"><span><a href="#">Today</a></span></li>
                     <li id="upcoming"><span><a href="#">Upcoming</a></span></li>
-    
+                    <li id="completed"><span><a href="#">Completed</a></span></li>
 
                     </ul>
                     <ul id="projects">
@@ -42,9 +42,9 @@
             <div id="main-content">
 
             </div>
-            <div id="modal" class="hidden">
+            <div id="modal" class="modal hidden">
             
-                    <button id="close-modal">X</button>
+                    <button id="close-modal" class="close-modal">X</button>
                     <label for="title">title</label>
                     <input type="text" placeholder="Task Name" name="title" id="title-input">
                     <label for="description">Description</label>
@@ -61,8 +61,17 @@
 
                     </div>
                     <label for="save-todo"></label>
-                    <input type="submit" id="save-todo" name="save-todo">
+                    <input type="submit" id="save-todo" name="save-todo" class="save">
            
+            </div>
+            <div id="project-modal" class="modal hidden">
+                <button id="close-project-modal" class="close-modal">X</button>
+                <label for="title">Title</label>
+                <input type="text" placeholder="Project Name" name="title" id="project-title">
+                <label for="description">Description</label>
+                <input type="text" placeholder="Description" id="project-description">
+                <label for="save-project"></label>
+                <input type="submit" id="save-project" name="save-project" class="save">
             </div>
     </div>
 </body>

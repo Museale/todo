@@ -1,11 +1,11 @@
 import { getByID, deleteMaincontent } from "./DOM_module";
 
-export const renderProjects = () =>  {
+export const renderProjects = (() =>  {
     const projectContent = document.createElement('div');
     projectContent.classList.add('active-page');
-    getByID.mainContent.appendChild(projectContent);
+ 
 
-    const createContent = () => {
+        getByID.mainContent.appendChild(projectContent);
         const projectHeader = document.createElement('h2');
         projectHeader.textContent = 'Projects';
 
@@ -21,10 +21,5 @@ export const renderProjects = () =>  {
             projectUl.appendChild(item);
         })
 
-      createContent();
-};
-
-
-
-
-}
+    
+})();

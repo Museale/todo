@@ -1,6 +1,6 @@
 @import '_mixins_variables';
 
-#modal {
+#modal, .modal {
     position: absolute;
     left: 40%;
     top: 38%; 
@@ -30,7 +30,7 @@ label  {
     display: none;
 }
 
-#close-modal {
+#close-modal, .close-modal {
    position: absolute;
    justify-self: flex-end;
    align-self: flex-start;
@@ -45,7 +45,7 @@ label  {
    padding: 10px;
 }
 
-#title-input {
+#title-input, #project-title {
     grid-column: 1 / span 3;
     font-size: 22px;
     font-weight: bold;
@@ -53,7 +53,7 @@ label  {
   
 }
 
-#description-input {
+#description-input, #project-description {
     grid-row: 4;
     grid-column: 1 / span 3;
     font-size: 12px;
@@ -61,14 +61,16 @@ label  {
     margin-top: -20px;
 }
 
-#modal  > input {
+#modal  > input,
+#project-modal > input {
     height: 40px;
     border: none;
     outline: none;
     padding: 0.2rem;
 }
 
-#modal > #description-input:-internal-autofill-selected{ 
+#modal > #description-input:-internal-autofill-selected,
+#project-modal > #project-description:-internal-autofill-selected{ 
     appearance: none;
     outline:none;
     background-color: white !important;
@@ -101,7 +103,8 @@ label  {
     }
 }
 
-#modal  > #save-todo {
+#modal  > #save-todo,
+#save-project {
     grid-row: 6;
     grid-column: 3;
     border: 1px solid $body-colour;
@@ -124,5 +127,7 @@ label  {
 }
 
 .hidden {
+
+    display: none;
     visibility: hidden;
 }

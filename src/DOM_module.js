@@ -14,9 +14,12 @@ export const getByID = (() => {
     const newTodoNavBtn =  document.getElementById('new-todo-nav-btn');
     const newProjectBtn = document.getElementById('new-project-btn');
     const openModal = document.getElementById('new-todo-nav-btn');
+    const projectModal = document.getElementById('project-modal');
     const newTodoModal = document.getElementById('modal');
     const closeModal = document.getElementById('close-modal');
+    const closeProjectModal = document.getElementById('close-project-modal');
     const submitTodo = document.getElementById('save-todo');
+    const saveProject = document.getElementById('save-project');
     const projects = document.getElementById('projects');
     const projectTitle = document.getElementById('projects-title');
     const todaySidebar = document.getElementById('today');
@@ -26,7 +29,7 @@ export const getByID = (() => {
     const highPrioritySidebar = document.getElementById('high-pri-sidebar');
     const title = document.getElementById('title-input');
     const description = document.getElementById('description-input');
-    const dueDate = document.getElementById('date');
+    const due = document.getElementById('date');
     const priority = document.getElementById('priority');
 
     return {
@@ -48,13 +51,18 @@ export const getByID = (() => {
         highPrioritySidebar,
         title,
         description,
-        dueDate,
-        priority
+        due,
+        priority,
+        projectModal,
+        saveProject,
+        closeProjectModal
     }
 })();
 
 export const renderDOM = () => {
-    
+
+    getByID.due.defaultValue = new Date().toISOString().substr(0, 10);
+
     const appendDays = (() => {
         const weekdaysContainer = document.createElement('div');
         weekdaysContainer.id = 'week';
@@ -125,7 +133,6 @@ export const renderTodos = (() => {
     const todaysTodosContainer = document.createElement('div');
         todaysTodosContainer.id = 'todays-todo-container';
       
-
         const createNewTodo = () => {
             todos.getTodos();
             const newtodo = document.createElement('div');
@@ -145,10 +152,11 @@ export const renderTodos = (() => {
      
             const displayDueDate = document.createElement('span');
 
-            const month = new Date(getByID.dueDate.value);
+            const month = new Date(getByID.due.value);
         
             const date = document.createElement('button');
             date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
+
             displayDueDate.appendChild(date)
 
             const todoContent =  [checkbox, displayTitle, displayDescription, displayDueDate];
