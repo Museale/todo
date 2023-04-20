@@ -1,4 +1,4 @@
-import { getByID } from "./DOM_module";
+import { get, renderDOM, renderTodos } from "./DOM_module";
 
 
 export const newTodo = (title, description, dueDate, priority) => {
@@ -15,37 +15,35 @@ export const newTodo = (title, description, dueDate, priority) => {
 export const todos = (() => {
   const allTodos = [];
   const todaysTodos = [];
-  const defaultDate = new Date().toISOString().substr(0, 10);;
-  // const day = defaultDate.getDate();
-  // const month = defaultDate.getMonth() + 1;
-  // const year = defaultDate.getFullYear();
-  // const todaysDate =  `${month}-${day}-${year}`;
- 
-  const getTodos = () => {
- 
-    const title = getByID.title.value;
-    const description = getByID.description.value;
-    const dueDate = getByID.due.value || defaultDate ;
+  const defaultDate = new Date().toISOString().substr(0, 10);
 
-    const priority = getByID.priority.value;
-
-    const addTodo = newTodo(title, description, dueDate, priority);
+    const getTodos = () => {
   
-    allTodos.push(addTodo);
+      const title = get.title.value;
+      const description = get.description.value;
+      const dueDate = get.due.value || defaultDate ;
+      const priority = get.priority.value;
 
-    if(addTodo.dueDate === defaultDate) {
-      todaysTodos.push(addTodo)
-    }
+      const addTodo = newTodo(title, description, dueDate, priority);
 
-   return {
-    addTodo, title, description, dueDate, priority}
-  };
- 
-return {
-  allTodos,
-  todaysTodos,
-  getTodos,
+      title ? allTodos.push(addTodo) : false;
+    
+      addTodo.dueDate === defaultDate ? todaysTodos.push(addTodo) : false; 
+    
 
-}
+      return {
+        addTodo, 
+        title, 
+        description, 
+        dueDate, 
+        priority
+      }
+    };
+  
+  return {
+    allTodos,
+    todaysTodos,
+    getTodos,
+  }
 
 })();

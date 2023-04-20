@@ -1,25 +1,30 @@
-import { getByID, deleteMaincontent } from "./DOM_module";
+import { get, deleteMaincontent } from "./DOM_module";
 
-export const renderProjects = (() =>  {
-    const projectContent = document.createElement('div');
-    projectContent.classList.add('active-page');
- 
+export const newProject = (project, description)=> {
+    const projectTodo = [];
+    return{
+        projectTodo,
+        project, 
+        description
+    }
+}
 
-        getByID.mainContent.appendChild(projectContent);
-        const projectHeader = document.createElement('h2');
-        projectHeader.textContent = 'Projects';
+export const addProject = (() =>  {
 
-        const projectUl = document.createElement('ul');
-        projectUl.id = 'project-list';
-        projectContent.appendChild(projectUl);
-
-        const listItems = ['Personal', 'Work', 'High Priority'];
-        
-        listItems.forEach(li => {
-            const item = document.createElement('li');
-            item.textContent = li;
-            projectUl.appendChild(item);
-        })
-
-    
-})();
+    const addToList = () => {
+        const listItem = document.createElement('li');
+        const listSpan = document.createElement('span');
+        const listAnchor = document.createElement('a');
+        listAnchor.href = '#';
+        listItem.appendChild(listSpan);
+        listItem.appendChild(listAnchor);
+        listAnchor.textContent = get.projectTitle.value;
+        get.projects.appendChild(listItem);
+        return {
+            listItem
+        }
+    }
+    return {
+        addToList
+    }
+    })();

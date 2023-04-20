@@ -6,12 +6,13 @@ import getMonth from 'date-fns/getMonth';
 import { el } from 'date-fns/locale';
 import { newTodo, todos } from './todo_module';
 import { getYear } from 'date-fns';
+import { roundToNearestMinutesWithOptions } from 'date-fns/fp';
 
-export const getByID = (() => {
+export const get = (() => {
     const mainContent = document.querySelector('#main-content');
     const todoContainer = document.getElementById('todo-container');
     const hamburgerBtn = document.getElementById('hamburger-menu-btn');
-    const newTodoNavBtn =  document.getElementById('new-todo-nav-btn');
+    const newTodoNavBtn = document.getElementById('new-todo-nav-btn');
     const newProjectBtn = document.getElementById('new-project-btn');
     const openModal = document.getElementById('new-todo-nav-btn');
     const projectModal = document.getElementById('project-modal');
@@ -21,52 +22,51 @@ export const getByID = (() => {
     const submitTodo = document.getElementById('save-todo');
     const saveProject = document.getElementById('save-project');
     const projects = document.getElementById('projects');
-    const projectTitle = document.getElementById('projects-title');
+    const projectTitle = document.getElementById('project-title');
+    const projectDescription = document.getElementById('project-description');
     const todaySidebar = document.getElementById('today');
     const upcoming = document.getElementById('upcoming');
-    const personalSidebar = document.getElementById('personal-sidebar');
-    const workSidebar = document.getElementById('work-sidebar');
-    const highPrioritySidebar = document.getElementById('high-pri-sidebar');
+    const projectListSidebar = document.getElementById('project-list');
     const title = document.getElementById('title-input');
     const description = document.getElementById('description-input');
     const due = document.getElementById('date');
     const priority = document.getElementById('priority');
-
+  
     return {
-        mainContent,
-        todoContainer,
-        hamburgerBtn,
-        newTodoNavBtn,
-        newProjectBtn,
-        openModal,
-        newTodoModal,
-        closeModal,
-        submitTodo, 
-        projects,
-        projectTitle,
-        todaySidebar,
-        upcoming,
-        personalSidebar, 
-        workSidebar,
-        highPrioritySidebar,
-        title,
-        description,
-        due,
-        priority,
-        projectModal,
-        saveProject,
-        closeProjectModal
-    }
-})();
+      mainContent,
+      todoContainer,
+      hamburgerBtn,
+      newTodoNavBtn,
+      newProjectBtn,
+      openModal,
+      newTodoModal,
+      closeModal,
+      submitTodo, 
+      projects,
+      projectTitle,
+      projectDescription,
+      projectListSidebar,
+      todaySidebar,
+      upcoming,
+      title,
+      description,
+      due,
+      priority,
+      projectModal,
+      saveProject,
+      closeProjectModal
+    };
+  })();
+  
 
 export const renderDOM = () => {
-
-    getByID.due.defaultValue = new Date().toISOString().substr(0, 10);
+    const today = new Date().toISOString().substr(0, 10);
+    get.due.defaultValue = today;
 
     const appendDays = (() => {
         const weekdaysContainer = document.createElement('div');
         weekdaysContainer.id = 'week';
-        getByID.mainContent.appendChild(weekdaysContainer);
+        get.mainContent.appendChild(weekdaysContainer);
 
         const daysOfTheWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
@@ -104,21 +104,22 @@ export const renderDOM = () => {
 
         const hamburgerMenuImg = new Image();
         hamburgerMenuImg.src = hamburgerIcon;
-        getByID.hamburgerBtn.appendChild(hamburgerMenuImg);
+        get.hamburgerBtn.appendChild(hamburgerMenuImg);
         
         const newTodoBtnImg = new Image();
         newTodoBtnImg.src = plusIcon;
-        getByID.newTodoNavBtn.appendChild(newTodoBtnImg);
+        get.newTodoNavBtn.appendChild(newTodoBtnImg);
 
         const newProjectBtnImg = new Image();
         newProjectBtnImg.src = plusIcon;
-        getByID.newProjectBtn.appendChild(newProjectBtnImg);
+        get.newProjectBtn.appendChild(newProjectBtnImg);
 
     })();
 
     return {
         appendImages,
         appendDays, 
+        today
     
     }
 };
@@ -128,32 +129,42 @@ export const renderTodos = (() => {
     const todoContainer = document.createElement('div');
         todoContainer.id = 'todo-container';
         todoContainer.classList.add('active-page');
-        getByID.mainContent.appendChild(todoContainer)
+        get.mainContent.appendChild(todoContainer)
 
     const todaysTodosContainer = document.createElement('div');
         todaysTodosContainer.id = 'todays-todo-container';
+
       
         const createNewTodo = () => {
+        
+            const title = get.title.value;
+                if (!title) {
+                return;
+                }
             todos.getTodos();
-            const newtodo = document.createElement('div');
-            newtodo.id = 'new-todo-div';
-            newtodo.classList.add = 'todo';
+
+            const newTodo = document.createElement('div');
+            newTodo.id = 'new-todo-div';
+            newTodo.classList.add = 'todo';
+            newTodo.value =  get.due.value;
             
             const checkbox = document.createElement('input'); 
             checkbox.setAttribute('type', 'checkbox');
             
             const displayTitle = document.createElement('div');
             displayTitle.id = 'display-title';
-            displayTitle.textContent = getByID.title.value;
+            displayTitle.textContent = get.title.value;
 
             const displayDescription = document.createElement('div');
             displayDescription.id = 'display-description';
-            displayDescription.textContent = getByID.description.value;
+            displayDescription.textContent = get.description.value;
      
             const displayDueDate = document.createElement('span');
 
-            const month = new Date(getByID.due.value);
-        
+            const month = new Date(get.due.value);
+                console.log(month)
+
+                console.log(get.due.value)
             const date = document.createElement('button');
             date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
 
@@ -162,12 +173,16 @@ export const renderTodos = (() => {
             const todoContent =  [checkbox, displayTitle, displayDescription, displayDueDate];
 
             todoContent.forEach(e => {
-                newtodo.appendChild(e);
+                newTodo.appendChild(e);
             })
+           
+            todoContainer.appendChild(newTodo);
 
-            todoContainer.appendChild(newtodo);
-    
+            if (newTodo.value === renderDOM.today) {
+                console.log(true)
+            }
         }
+    
     return {
         todoContainer,
         todaysTodosContainer,
@@ -175,10 +190,12 @@ export const renderTodos = (() => {
     }
 })();
 
+
+
 export const deleteMaincontent = () => {
-    if (getByID.mainContent.hasChildNodes()) {
-     getByID.mainContent.childNodes.forEach(e => {
-        e.nodeType === Node.ELEMENT_NODE && e.classList.contains('active-page') ? getByID.mainContent.removeChild(e) : false;
+    if (get.mainContent.hasChildNodes()) {
+     get.mainContent.childNodes.forEach(e => {
+        e.nodeType === Node.ELEMENT_NODE && e.classList.contains('active-page') ? get.mainContent.removeChild(e) : false;
      });
       
     }
