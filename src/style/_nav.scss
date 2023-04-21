@@ -1,8 +1,9 @@
 #nav {
-  background-color: #147eff33;
+  background-color: #ffffff33;
   grid-row: 1;
   grid-column: 1 / -1;
   // @include standardBorder;
+  border-bottom: 1px solid $border-colour;
   display: grid;
   align-items: center;
   padding: 0.5rem;

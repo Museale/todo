@@ -1,16 +1,15 @@
 import { get, renderDOM, renderTodos } from "./DOM_module";
 
-
-export const newTodo = (title, description, dueDate, priority) => {
+export const newTodo = (title, description, dueDate, priority, project) => {
   return {
     title,
     description,
     dueDate,
     priority,
+    project
 
   };
 };
-
 
 export const todos = (() => {
   const allTodos = [];
@@ -18,26 +17,12 @@ export const todos = (() => {
   const defaultDate = new Date().toISOString().substr(0, 10);
 
     const getTodos = () => {
-  
-      const title = get.title.value;
-      const description = get.description.value;
-      const dueDate = get.due.value || defaultDate ;
-      const priority = get.priority.value;
+      const addTodo = newTodo(get.title.value, get.description.value || defaultDate, get.due.value, get.priority.value, get.projectSelect.value);
 
-      const addTodo = newTodo(title, description, dueDate, priority);
-
-      title ? allTodos.push(addTodo) : false;
+      get.title.value ? allTodos.push(addTodo) : false;
     
       addTodo.dueDate === defaultDate ? todaysTodos.push(addTodo) : false; 
-    
-
-      return {
-        addTodo, 
-        title, 
-        description, 
-        dueDate, 
-        priority
-      }
+      
     };
   
   return {
@@ -47,3 +32,4 @@ export const todos = (() => {
   }
 
 })();
+

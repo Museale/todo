@@ -24,9 +24,9 @@
     padding-top: 10px;
 }
 
-#new-todo-div {
+.new-todo-div {
     display: grid;
-    grid-template-columns: 48px 1fr 1fr;
+    grid-template-columns: 48px 1fr 1fr 25px;
     grid-template-rows: 1fr 1fr;    
     padding: 0.2rem;
     align-items: center;
@@ -64,4 +64,15 @@ input[type="checkbox"] {
 #new-todo-div > span::before {
     content: "Due";
     color: gray;
+}
+
+#delete-todo {
+    grid-row: 1;
+    grid-column: 4;  
+    display: flex;
+    justify-self: end;
+    border-radius: 5px;
+    color: grey;
+    border: none;
+    background: white;
 }

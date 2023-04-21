@@ -54,7 +54,7 @@ button:hover, .button:hover {
 
 #sidebar {
   // @include standardBorder;
-  background-color: rgba(128, 255, 234, 0.048);
+  border-right: 1px solid $border-colour;
   grid-row: 2;
   grid-column: 1;
   display: grid;

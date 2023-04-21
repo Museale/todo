@@ -1,4 +1,4 @@
-import { renderDOM, renderTodos, get, deleteMaincontent } from './DOM_module';
+import { renderDOM, renderTodos, get, deleteMaincontent, createNewTodo } from './DOM_module';
 import { addProject } from "./projects";
 import _ from "date-fns";
 
@@ -25,7 +25,6 @@ export const events = (() => {
         addProject.addToList();
         get.projectModal.classList.add('hidden');
     });
-    
     get.newProjectBtn.addEventListener('click', () => {
         get.projectModal.classList.remove('hidden');
     });
@@ -47,6 +46,20 @@ export const events = (() => {
         });
     });
 
+
+    const getCheckbox = () => {
+        get.checkbox.addEventListener('change', () => {
+            if (get.checkbox.checked) {
+                get.checkbox.parentNode.classList.add('completed');
+                console.log('Checkbox is checked!');
+            } else {
+                console.log('Checkbox is unchecked!');
+            }
+        })
+    
+    };
+
+    return {
+        getCheckbox
+    }
 })();
-
-

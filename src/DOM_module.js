@@ -21,6 +21,7 @@ export const get = (() => {
     const closeProjectModal = document.getElementById('close-project-modal');
     const submitTodo = document.getElementById('save-todo');
     const saveProject = document.getElementById('save-project');
+    const projectSelect  = document.getElementById('project-selection');
     const projects = document.getElementById('projects');
     const projectTitle = document.getElementById('project-title');
     const projectDescription = document.getElementById('project-description');
@@ -31,7 +32,8 @@ export const get = (() => {
     const description = document.getElementById('description-input');
     const due = document.getElementById('date');
     const priority = document.getElementById('priority');
-  
+    const checkbox = () => document.getElementById('checkbox');
+
     return {
       mainContent,
       todoContainer,
@@ -46,6 +48,8 @@ export const get = (() => {
       projectTitle,
       projectDescription,
       projectListSidebar,
+      projectSelect,
+      saveProject,
       todaySidebar,
       upcoming,
       title,
@@ -53,8 +57,8 @@ export const get = (() => {
       due,
       priority,
       projectModal,
-      saveProject,
-      closeProjectModal
+      closeProjectModal,
+      checkbox
     };
   })();
   
@@ -135,21 +139,24 @@ export const renderTodos = (() => {
         todaysTodosContainer.id = 'todays-todo-container';
 
       
+const todoArray = [];
         const createNewTodo = () => {
         
             const title = get.title.value;
                 if (!title) {
                 return;
                 }
-            todos.getTodos();
 
-            const newTodo = document.createElement('div');
-            newTodo.id = 'new-todo-div';
-            newTodo.classList.add = 'todo';
-            newTodo.value =  get.due.value;
+            todos.getTodos();
             
+            const newTodo = document.createElement('div');
+            newTodo.classList.add(get.projectSelect.value.toLowerCase().split(' ').join('_'), 'new-todo-div');
+            newTodo.id = get.title.value.toLowerCase().split(' ').join('-');
+            newTodo.value =  get.due.value;
+ 
             const checkbox = document.createElement('input'); 
             checkbox.setAttribute('type', 'checkbox');
+            checkbox.id = 'checkbox';
             
             const displayTitle = document.createElement('div');
             displayTitle.id = 'display-title';
@@ -162,15 +169,17 @@ export const renderTodos = (() => {
             const displayDueDate = document.createElement('span');
 
             const month = new Date(get.due.value);
-                console.log(month)
-
-                console.log(get.due.value)
+        
             const date = document.createElement('button');
             date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
 
+            const deleteTodoBtn = document.createElement('button');
+            deleteTodoBtn.textContent = 'X';
+            deleteTodoBtn.id = 'delete-todo';
+
             displayDueDate.appendChild(date)
 
-            const todoContent =  [checkbox, displayTitle, displayDescription, displayDueDate];
+            const todoContent =  [checkbox, displayTitle, displayDescription, displayDueDate, deleteTodoBtn];
 
             todoContent.forEach(e => {
                 newTodo.appendChild(e);
@@ -181,12 +190,29 @@ export const renderTodos = (() => {
             if (newTodo.value === renderDOM.today) {
                 console.log(true)
             }
+
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    checkbox.parentNode.classList.add('completed');
+                    console.log('Checkbox is checked!');
+                } else {
+                    console.log('Checkbox is unchecked!');
+                }
+            })
+            if (checkbox.parentNode.classList.contains('completed')){
+                console.log('completed')
+            }
+            todoArray.push(newTodo);
+            console.log(todoArray)
+           
         }
     
     return {
         todoContainer,
         todaysTodosContainer,
-        createNewTodo
+        createNewTodo, 
+
+        todoArray
     }
 })();
 
@@ -200,3 +226,6 @@ export const deleteMaincontent = () => {
       
     }
 }
+ const displayTodos = () => {
+
+ }
