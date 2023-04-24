@@ -211,7 +211,6 @@ const todoArray = [];
         todoContainer,
         todaysTodosContainer,
         createNewTodo, 
-
         todoArray
     }
 })();
