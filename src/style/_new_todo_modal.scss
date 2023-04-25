@@ -1,9 +1,14 @@
 @import '_mixins_variables';
 
-#modal, .modal {
+#modal {
+    box-shadow: none;
+}
+
+#modal> form, 
+.modal {
     position: absolute;
     left: 40%;
-    top: 38%; 
+    top: 38%;
     margin-left: -150px;
     margin-top: -150px;
     justify-self: center;
@@ -61,7 +66,7 @@ label  {
     margin-top: -20px;
 }
 
-#modal  > input,
+#modal  > form >input,
 #project-modal > input {
     height: 40px;
     border: none;
@@ -69,14 +74,14 @@ label  {
     padding: 0.2rem;
 }
 
-#modal > #description-input:-internal-autofill-selected,
+#modal > form > #description-input:-internal-autofill-selected,
 #project-modal > #project-description:-internal-autofill-selected{ 
     appearance: none;
     outline:none;
     background-color: white !important;
 }
 
-#modal > #priority-btn  {
+#modal > form > #priority-btn  {
     grid-row: 6;
     grid-column: 3;
     justify-self: flex-end;
@@ -109,7 +114,7 @@ select {
     grid-row: 6;
 }
 
-#modal  > #save-todo,
+#modal  > form > #save-todo,
 #save-project {
     grid-row: 6;
     grid-column: 4;

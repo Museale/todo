@@ -45,36 +45,36 @@
 
             </div>
             <div id="modal" class="modal hidden">
-            
-                    <button id="close-modal" class="close-modal">X</button>
-                    <label for="title">title</label>
-                    <input type="text" placeholder="Task Name" name="title" id="title-input">
-                    <label for="description">Description</label>
-                    <input type="text" placeholder="Description" id="description-input">
-                    <label for="date">Date</label>
-                    <input type ="date" name="date" id="date">
-                    <div id="project-btn">
-                        <select id="project-selection">
-                            <option id="project-default" selected>Project</option>
-                            <option id="personal">Personal</option>
-                            <option id="work">Work</option>
-                            <option id="high_priority">High Priority</option>
-                        </select>
-
-                    </div>
-                    <div id="priority-btn">
-                        <select id="priority">
-                            <option id="Default" selected>Priority</option>
-                            <option id="green">Priority 1</option>
-                            <option id="orange">Priority 2</option>
-                            <option id="red">Priority 3</option>
-                        </select>
-
-                    </div>
-                    <label for="save-todo"></label>
-                    <input type="submit" id="save-todo" name="save-todo" class="save">
-           
+                <form action="" id="todo-form">
+                    
+                            <button id="close-modal" class="close-modal">X</button>
+                            <label for="title">title</label>
+                            <input type="text" placeholder="Task Name" name="title" id="title-input">
+                            <label for="description">Description</label>
+                            <input type="text" placeholder="Description" id="description-input">
+                            <label for="date">Date</label>
+                            <input type ="date" name="date" id="date">
+                            <div id="project-btn">
+                                <select id="project-selection">
+                                    <option id="project-default" selected>Project</option>
+                                    <option id="personal">Personal</option>
+                                    <option id="work">Work</option>
+                                    <option id="high_priority">High Priority</option>
+                                </select>
+                            </div>
+                            <div id="priority-btn">
+                                <select id="priority">
+                                    <option id="Default" selected>Priority</option>
+                                    <option id="green">Priority 1</option>
+                                    <option id="orange">Priority 2</option>
+                                    <option id="red">Priority 3</option>
+                                </select>
+                            </div>
+                            <label for="save-todo"></label>
+                            <input type="submit" id="save-todo" name="save-todo" class="save">
+                </form>
             </div>
+            <ul id="todo-list"></ul>
             <div id="project-modal" class="modal hidden">
                 <button id="close-project-modal" class="close-modal">X</button>
                 <label for="title">Title</label>

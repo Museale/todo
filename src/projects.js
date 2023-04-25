@@ -1,5 +1,10 @@
 import { get, deleteMaincontent } from "./DOM_module";
 
+
+console.log('proj')
+
+
+
 export const newProject = (project, description)=> {
     const projectTodo = [];
     return{
@@ -24,6 +29,7 @@ export const addProject = (() =>  {
         listAnchor.textContent = get.projectTitle.value;
         get.projects.appendChild(listItem);
         get.projectSelect.appendChild(projectSelection);
+
         return {
             listItem
         }
