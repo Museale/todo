@@ -42,7 +42,9 @@
       
    
             <div id="main-content">
-
+                <div id="todo-container">
+                    <ul id="todo-list"></ul>
+                </div>
             </div>
             <div id="modal" class="modal hidden">
                 <form action="" id="todo-form">
@@ -53,7 +55,7 @@
                             <label for="description">Description</label>
                             <input type="text" placeholder="Description" id="description-input">
                             <label for="date">Date</label>
-                            <input type ="date" name="date" id="date">
+                            <input type ="date" name="date" id="input-date">
                             <div id="project-btn">
                                 <select id="project-selection">
                                     <option id="project-default" selected>Project</option>
@@ -74,7 +76,7 @@
                             <input type="submit" id="save-todo" name="save-todo" class="save">
                 </form>
             </div>
-            <ul id="todo-list"></ul>
+       
             <div id="project-modal" class="modal hidden">
                 <button id="close-project-modal" class="close-modal">X</button>
                 <label for="title">Title</label>

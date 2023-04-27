@@ -32,9 +32,10 @@ export const get = (() => {
     const projectListSidebar = document.getElementById('project-list');
     const title = document.getElementById('title-input');
     const description = document.getElementById('description-input');
-    const due = document.getElementById('date');
+    const due = document.getElementById('input-date');
     const priority = document.getElementById('priority');
     const todoList = document.getElementById('todo-list')
+    const deleteTodo = () => document.getElementById('delete-todo');
     let checkbox = () => document.querySelectorAll('#checkbox');
 
     return {
@@ -62,7 +63,8 @@ export const get = (() => {
       projectModal,
       closeProjectModal,
       checkbox, 
-      todoList
+      todoList,
+      deleteTodo
     };
   })();
   

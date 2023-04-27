@@ -1,7 +1,6 @@
 import { get, renderDOM } from "./DOM_module";
 import { events } from "./event_handler";
-console.log('todo')
-// export const newTodo = (title, description, dueDate, priority, project, completed) => {
+console.log('todo');
   
 //   return {
 //     title,
@@ -17,7 +16,6 @@ console.log('todo')
 export const todos = (() => {
   const allTodos = [];
   const todaysTodos = [];
-  let counter = 0;
   const defaultDate = new Date().toISOString().substr(0, 10);
 
     const addTodoItem = (todo) => {
@@ -33,33 +31,9 @@ export const todos = (() => {
     };
 
     const getTodos = () => {
-   
       return allTodos;
     }
-      // counter++;
-      // const addTodo = newTodo(get.title.value, get.description.value, get.due.value, get.priority.value, get.projectSelect.value, false);
-      // console.log(addTodo)
-      // get.title.value ? allTodos.push(addTodo) : false;
 
-      // addTodo.dueDate === defaultDate ? todaysTodos.push(addTodo) : false; 
-      // const todoJson = JSON.stringify(addTodo);
-      // localStorage.setItem('todo' + counter, todoJson);
-      // console.log(todoJson)
-    // };
-    // const completeTodo = () => {
-
-    //   get.checkbox().addEventListener('change', () => {
-    //     if (get.checkbox().checked) {
-    //         get.checkbox().parentNode.classList.add('completed');
-    //         console.log('Checkbox is checked!');
-    //     } else {
-    //         console.log('Checkbox is unchecked!');
-    //     }
-    // })
-    // if (get.checkbox().parentNode.classList.contains('completed')){
-    //     console.log('completed')
-    // }
-    // };
   return {
     allTodos,
     todaysTodos,
@@ -67,19 +41,25 @@ export const todos = (() => {
     updateTodoItem,
     deleteTodoItem,
     getTodos,
-    // completeTodo
   }
 })();
 
 export const renderTodos = () => {
   const todoListUl = get.todoList;
+
   const todo = todos.getTodos();
 
-  todo.forEach((todo, index) => {
-
+  todo.forEach((todo) => {
+      const todoId = `${todo.title}-${todo.dueDate}`;
+      const existingTodo = document.getElementById(todoId);
+        
+    if (existingTodo) {
+      return;
+    }
       const todoElement = document.createElement('li');
           todoElement.classList.add(get.projectSelect.value.toLowerCase().split(' ').join('_'), 'new-todo-div');
-
+          todoElement.id = todoId;
+     
       const titleElement = document.createElement('div');
           titleElement.textContent = todo.title;
           titleElement.id = 'display-title';
@@ -93,7 +73,6 @@ export const renderTodos = () => {
       const date = document.createElement('button');
           date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
           dueDateElement.appendChild(date);
-          dueDateElement.textContent = todo.due;
           dueDateElement.id = 'date';
 
       const deleteTodoButtonElement = document.createElement('button');        
@@ -104,15 +83,32 @@ export const renderTodos = () => {
           checkbox.setAttribute("type", "checkbox");
           checkbox.id = 'checkbox';
 
-      const todoArr = [checkbox, titleElement, descriptionElement, dueDateElement, deleteTodoButtonElement];
+      const priorityElement = document.createElement('div');
+        priorityElement.id = 'pri-element'
+        switch(true) {
+          case get.priority.value === 'Priority 1' : priorityElement.classList.add('green');
+          break;
+          case get.priority.value === 'Priority 2' : priorityElement.classList.add('orange');
+          break;
+          case get.priority.value === 'Priority 3' : priorityElement.classList.add('red');
+          break;
+        }
+    
+      const projectElement = document.createElement('div');
+        projectElement.textContent = get.projectSelect.value;
+        projectElement.id = 'proj-element'
+      if (projectElement.textContent === 'Project') {
+        projectElement.classList.add('hidden');
+      }
+
+      const todoArr = [checkbox, titleElement, descriptionElement, dueDateElement, deleteTodoButtonElement, priorityElement, projectElement];
 
       todoArr.forEach((el) => {
           todoElement.appendChild(el);
       });
-      todoListUl.appendChild(todoElement)
-  })
-
-
+    todoListUl.appendChild(todoElement);
+  }   
+  )
 
 }
 
