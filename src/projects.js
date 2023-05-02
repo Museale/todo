@@ -1,4 +1,5 @@
 import { get, deleteMaincontent } from "./DOM_module";
+import { events } from "./event_handler";
 
 
 console.log('proj')
@@ -17,8 +18,22 @@ export const newProject = (project, description)=> {
 export const addProject = (() =>  {
 
     const addToList = () => {
+
+        const projectArray = [];
+        const projectId = `${get.projectTitle.value}`;
+        const existingProject  = document.getElementById(projectId);
+
+        if (existingProject) {
+            return;
+        }
+        get.projectListSidebar.childNodes.forEach(child => {
+            if (child.nodeName !== "#text"){
+            projectArray.push(child);
+            }
+        });
+
         const listItem = document.createElement('li');
-        listItem.id = get.projectTitle.value.toLowerCase().split(' ').join('_');
+        listItem.id = get.projectTitle.value.toLowerCase().split(' ').join('-');
         const listSpan = document.createElement('span');
         const listAnchor = document.createElement('a');
         const projectSelection = document.createElement('option');
@@ -27,14 +42,20 @@ export const addProject = (() =>  {
         listItem.appendChild(listSpan);
         listItem.appendChild(listAnchor);
         listAnchor.textContent = get.projectTitle.value;
-        get.projects.appendChild(listItem);
+        get.projectListSidebar.appendChild(listItem);
+        projectArray.push(listItem);
         get.projectSelect.appendChild(projectSelection);
+       
+        events().addProjectListeners(projectArray);
 
         return {
-            listItem
+            listItem,
+            projectArray
         }
+        
     }
     return {
-        addToList
+        addToList,
+      
     }
     })();

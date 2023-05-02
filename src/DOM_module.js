@@ -29,12 +29,13 @@ export const get = (() => {
     const projectDescription = document.getElementById('project-description');
     const todaySidebar = document.getElementById('today');
     const upcoming = document.getElementById('upcoming');
+    const completedSidebar = document.getElementById('completed');
     const projectListSidebar = document.getElementById('project-list');
     const title = document.getElementById('title-input');
     const description = document.getElementById('description-input');
     const due = document.getElementById('input-date');
     const priority = document.getElementById('priority');
-    const todoList = document.getElementById('todo-list')
+    const todoList = document.getElementById('todo-list');
     const deleteTodo = () => document.getElementById('delete-todo');
     let checkbox = () => document.querySelectorAll('#checkbox');
 
@@ -55,6 +56,7 @@ export const get = (() => {
       projectSelect,
       saveProject,
       todaySidebar,
+      completedSidebar,
       upcoming,
       title,
       description,
@@ -132,87 +134,9 @@ export const renderDOM = (() => {
     }
 })()
 
-// export const renderTodos = (() => {
-
-//     const todoContainer = document.createElement('div');
-//         todoContainer.id = 'todo-container';
-//         todoContainer.classList.add('active-page');
-//         get.mainContent.appendChild(todoContainer)
-
-//     const todaysTodosContainer = document.createElement('div');
-//         todaysTodosContainer.id = 'todays-todo-container';
-
-//     const todoArray = [];
-
-//         const createNewTodo = () => {
-        
-//             const title = get.title.value;
-//                 if (!title) {
-//                 return;
-//                 }
-
-//             todos.getTodos();
-            
-//             const newTodo = document.createElement('div');
-//             newTodo.classList.add(get.projectSelect.value.toLowerCase().split(' ').join('_'), 'new-todo-div');
-//             newTodo.id = get.title.value.toLowerCase().split(' ').join('-');
-//             newTodo.value =  get.due.value;
- 
-//             const checkbox = document.createElement('input'); 
-//             checkbox.setAttribute('type', 'checkbox');
-//             checkbox.id = 'checkbox';
-            
-//             const displayTitle = document.createElement('div');
-//             displayTitle.id = 'display-title';
-//             displayTitle.textContent = get.title.value;
-
-//             const displayDescription = document.createElement('div');
-//             displayDescription.id = 'display-description';
-//             displayDescription.textContent = get.description.value;
-     
-//             const displayDueDate = document.createElement('span');
-
-//             const month = new Date(get.due.value);
-        
-//             const date = document.createElement('button');
-//             date.textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'long', formatMatcher: 'basic'}).format(month);
-
-//             const deleteTodoBtn = document.createElement('button');
-//             deleteTodoBtn.textContent = 'X';
-//             deleteTodoBtn.id = 'delete-todo';
-
-//             displayDueDate.appendChild(date)
-
-//             const todoContent =  [checkbox, displayTitle, displayDescription, displayDueDate, deleteTodoBtn];
-
-//             todoContent.forEach(e => {
-//                 newTodo.appendChild(e);
-//             })
-           
-//             todoContainer.appendChild(newTodo);
-
-//             if (newTodo.value === renderDOM.today) {
-//                 console.log(true)
-//             }
-
-//             // todos.completeTodo();
-            
-           
-//             todoArray.push(newTodo);
-//         }
-    
-//     return {
-//         todoContainer,
-//         todaysTodosContainer,
-//         createNewTodo, 
-//         todoArray
-//     }
-// })();
-
-
 export const deleteMaincontent = () => {
-    if (get.mainContent.hasChildNodes()) {
-     get.mainContent.childNodes.forEach(e => {
-        e.nodeType === Node.ELEMENT_NODE && e.classList.contains('active-page') ? get.mainContent.removeChild(e) : false;
+    if (get.todoContainer.hasChildNodes()) {
+     get.todoContainer.childNodes.forEach(e => {
+        e.nodeType === Node.ELEMENT_NODE && !e.classList.contains('today') ? get.todoContainer.removeChild(e) : false;
      });
     }};

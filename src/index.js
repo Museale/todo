@@ -5,5 +5,5 @@ import { events } from './event_handler';
 
 const render = (() => {
     console.log('index')
-    events()
+    events();
 })();
