@@ -10,13 +10,10 @@ console.log('Events')
 export const events = () => {
 
     const filteredList = () => Array.from(get.todoList.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE);
-    
-    const filteredWeek = () => Array.from(get.weekdaysContainer.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE);
 
     get.weekdaysContainer.addEventListener('click', (e) => {
         const weekdayClass = e.target.classList[0];
         filteredList().forEach(child => {
-            // console.log(child.classList[0], e.target.classList[0])
         !child.classList.contains(weekdayClass) ? child.classList.add('hidden') : child.classList.remove('hidden');
         })
     });
@@ -34,12 +31,10 @@ export const events = () => {
 
     get.todoList.addEventListener('click', (e) => {
         if (e.target.classList.contains('delete-todo')) {
-            console.log(e.target)
             const toDelete = e.target;
             const todoItem = toDelete.parentElement;
             todos.allTodos.map((todo, index) => {
                 todoItem.id === `${todo.title}-${todo.dueDate}` ? todos.deleteTodoItem(todo[index]) : false;
-                console.log(todos.allTodos)
             })
             todoItem.remove();
         }
@@ -67,6 +62,7 @@ export const events = () => {
     get.submitTodo.addEventListener('click', (e) => {
         e.preventDefault();
         eventHandleAddTodo();
+        localStorage.setItem(1, JSON.stringify(todos.allTodos))
         get.newTodoModal.classList.add('hidden');
     });
     

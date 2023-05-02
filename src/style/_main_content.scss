@@ -16,7 +16,7 @@
 }
 
 #week {
-  @include standardBorder;
+
   @include centerAll;
   grid-row: 1;
   display: grid;

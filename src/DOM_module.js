@@ -77,10 +77,7 @@ export const renderDOM = (() => {
     get.due.defaultValue = today;
 
     const appendDays = (() => {
-        // const weekdaysContainer = document.createElement('div');
-        // weekdaysContainer.id = 'week';
-        // get.mainContent.appendChild(weekdaysContainer);
-
+  
         const daysOfTheWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
             const date = new Date();

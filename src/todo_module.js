@@ -4,7 +4,14 @@ import { newProject } from "./projects";
 console.log('todo');
 
 export const todos = (() => {
-  const allTodos = [];
+
+  const allTodos = [{title: 'Buy food for cats', description: 'Royal Canine Sterilized wetfood, Hills Metabolic dryfood, and freezerdried chicken treats.', dueDate: '2023-05-23', priority: 'Priority 3', project: 'High Priority'}, {title: 'Study Japanese', description: 'Remember lesson notes that teacher sent by email.', dueDate: '2023-05-02', priority: 'Priority 2', project: 'Personal'}, {title: 'Draw cards for Vilma, Laura and Asta', description: 'Wrap Birthday gifts.', dueDate: '2023-05-02', priority: 'Priority 1', project: 'Personal'}];
+
+  for (let i = 0; i < localStorage.length; i++) {
+    allTodos.push(JSON.parse(localStorage.getItem(i)));
+   
+  }
+
   const todaysTodos = [];
   const defaultDate = new Date().toISOString().substr(0, 10);
 
@@ -13,6 +20,17 @@ export const todos = (() => {
       if (todo.dueDate === defaultDate) {
         todaysTodos.push(todo);
       }
+      saveInLocalStorage();
+    };
+
+    const saveInLocalStorage = () => {
+      allTodos.forEach((item, index)=> {
+        localStorage.setItem(index, JSON.stringify(item))
+      })
+    };
+
+    const removeFromLocalStorage = () => {
+
     };
 
     const updateTodoItem = (index, todo) => {
@@ -136,7 +154,7 @@ export const eventHandleAddTodo = () => {
     priority: priority,
     project: project
   };
-  
+
   todos.addTodoItem(todo);
 
   renderTodos()
