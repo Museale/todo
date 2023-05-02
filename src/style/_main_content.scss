@@ -1,7 +1,6 @@
 @import '_mixins_variables';
 
 #main-content {
-  // @include standardBorder;
   grid-row: 2;
   grid-column: 2;
   display: grid;
@@ -17,7 +16,7 @@
 }
 
 #week {
-
+  @include standardBorder;
   @include centerAll;
   grid-row: 1;
   display: grid;
@@ -27,12 +26,23 @@
   font-size: 22px;
   font-weight: light;
   font-family: monospace;
-  a {
+
+  div {
+     @include centerAll;
+    gap: 5px;
+    display: grid;
     grid-row: 1;
-    padding-bottom: 0.2rem;
-    width: 40px;
-    text-align: center;
-    border-bottom: 1px solid $border-colour;
+    grid-template-columns: 1fr;
+      a {
+        grid-row: 1;
+        padding-bottom: 0.2rem;
+        width: 40px;
+        text-align: center;
+        border-bottom: 1px solid $border-colour;
+      }
+        div {
+          grid-row: 2;
+        }
   }
 }
 

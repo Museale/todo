@@ -27,10 +27,6 @@ export const todos = (() => {
       return allTodos;
     }
 
-    const getTodaysTodos = () => {
-      return todaysTodos;
-    }
-
     const addProject = (todo, project) => {
       todo.classList.add(project);
     }
@@ -42,7 +38,6 @@ export const todos = (() => {
     updateTodoItem,
     deleteTodoItem,
     getTodos,
-    getTodaysTodos,
     addProject,
     defaultDate
   }
@@ -52,7 +47,6 @@ export const renderTodos = () => {
 
   const todoListUl = get.todoList;
   const todo = todos.getTodos();
-  const todaysTodos = todos.getTodaysTodos();
 
 const displayTodo = (todo) => {
 
@@ -63,7 +57,7 @@ if (existingTodo) {
   return;
 }
   const todoElement = document.createElement('li');
-      todoElement.classList.add(get.projectSelect.value.toLowerCase().split(' ').join('_'), 'new-todo-div');
+      todoElement.classList.add(todo.dueDate, get.projectSelect.value.toLowerCase().split(' ').join('_'), 'new-todo-div');
       if (todo.dueDate === todos.defaultDate) {
         todoElement.classList.add('today');
       }
@@ -124,10 +118,6 @@ if (existingTodo) {
   }   
   todo.forEach((todo) => {
     displayTodo(todo);
-  })
-
-  todaysTodos.forEach((todaysTodos) => {
-    displayTodo(todaysTodos);
   })
 
 };

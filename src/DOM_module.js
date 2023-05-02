@@ -12,6 +12,7 @@ console.log('dom')
 
 export const get = (() => {
     const mainContent = document.querySelector('#main-content');
+    const weekdaysContainer = document.getElementById('week');
     const todoContainer = document.getElementById('todo-container');
     const hamburgerBtn = document.getElementById('hamburger-menu-btn');
     const newTodoNavBtn = document.getElementById('new-todo-nav-btn');
@@ -41,6 +42,7 @@ export const get = (() => {
 
     return {
       mainContent,
+      weekdaysContainer,
       todoContainer,
       hamburgerBtn,
       newTodoNavBtn,
@@ -75,40 +77,40 @@ export const renderDOM = (() => {
     get.due.defaultValue = today;
 
     const appendDays = (() => {
-        const weekdaysContainer = document.createElement('div');
-        weekdaysContainer.id = 'week';
-        get.mainContent.appendChild(weekdaysContainer);
+        // const weekdaysContainer = document.createElement('div');
+        // weekdaysContainer.id = 'week';
+        // get.mainContent.appendChild(weekdaysContainer);
 
         const daysOfTheWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
             const date = new Date();
             const dayOne = daysOfTheWeek[date.getDay()];
-          
             const startIndex = daysOfTheWeek.indexOf(dayOne);
             const currentWeek = [dayOne];
        
             for (let i = startIndex + 1; i !== startIndex; i = (i + 1) % daysOfTheWeek.length) {
                 currentWeek.length < 7 ? currentWeek.push(daysOfTheWeek[i]) : false;
                 }
-
-            for (let i = 0; i < daysOfTheWeek.length ; i++) { 
-                let todaysDate = [date.getDate() + i];
-
-                const dateContainer = document.createElement('div');
-                    dateContainer.textContent = todaysDate;
-                    dateContainer.id = 'date-container';
-                    weekdaysContainer.appendChild(dateContainer);
-                    dateContainer.textContent == date.getDate() ? dateContainer.style.color = "red" : false;
-                }
-
-            currentWeek.forEach(element => {
-                const day = document.createElement('a');
-                    day.textContent = element;
-                    day.href = '#' + day;
+                for (let i = 0; i < daysOfTheWeek.length ; i++) { 
+                    const dayIndex = (startIndex + i) % daysOfTheWeek.length;
+                    const todaysDate = date.getDate() + i;
+                    const dateContainer = document.createElement('div');
+                    const dayNumber = document.createElement('div');
+                    dayNumber.textContent = todaysDate;
+                    dayNumber.id = todaysDate;
+                    get.weekdaysContainer.appendChild(dateContainer);
+                    dateContainer.appendChild(dayNumber)
+                    dayNumber.textContent == date.getDate() ? dateContainer.style.color = "red" : false;
+                    
+                    const day = document.createElement('a');
+                    day.textContent = daysOfTheWeek[dayIndex];
+                    day.href = '#' + daysOfTheWeek[dayIndex];
+                    day.id = daysOfTheWeek[dayIndex];
+                    day.classList.add(`${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2, '0')}-${todaysDate.toString().padStart(2, '0')}`);
                     day.style.fontSize = '14px';
                     day.style.opacity = "0.7";
-                    weekdaysContainer.appendChild(day);  
-                });  
+                    dateContainer.appendChild(day); 
+                }
     })();    
 
     const appendImages = (() => {
