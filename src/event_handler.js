@@ -53,7 +53,7 @@ export const events = () => {
 
     get.todaySidebar.addEventListener('click', () => {
        filteredList().forEach(child => {
-        !child.classList.contains('today') ? child.classList.add('hidden') : false;
+        !child.classList.contains('today') || child.classList.contains('completed') ? child.classList.add('hidden') : child.classList.remove('hidden');
        })
     });
 
