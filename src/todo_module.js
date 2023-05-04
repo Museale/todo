@@ -1,3 +1,4 @@
+import { check } from "prettier";
 import { get, renderDOM } from "./DOM_module";
 import { events } from "./event_handler";
 import { newProject } from "./projects";
@@ -12,6 +13,7 @@ export const todos = (() => {
 
     const addTodoItem = (todo) => {
       allTodos.push(todo);
+      saveInLocalStorage();
     };
 
     const saveInLocalStorage = () => {
@@ -64,9 +66,6 @@ if (existingTodo) {
 }
   const todoElement = document.createElement('li');
       todoElement.classList.add(todo.dueDate, get.projectSelect.value.toLowerCase().split(' ').join('_'), 'new-todo-div');
-      if (todo.dueDate === todos.defaultDate) {
-        todoElement.classList.add('today');
-      }
       todoElement.id = todoId;
  
   const titleElement = document.createElement('div');
@@ -112,7 +111,18 @@ if (existingTodo) {
   if (projectElement.textContent === 'Project') {
     projectElement.classList.add('hidden');
   }
-  
+  if (todo.dueDate === todos.defaultDate) {
+    todoElement.classList.add('today');
+  }
+  if (todo.completed === true) {
+    todoElement.classList.add('completed');
+    todoElement.classList.toggle('hidden');
+    checkbox.checked = true;
+  }
+  if (!todo.completed) {
+    todoElement.classList.remove('completed');
+    todoElement.classList.remove('hidden')
+  }
   const todoArr = [checkbox, titleElement, descriptionElement, dueDateElement, deleteTodoButtonElement, priorityElement, projectElement];
 
   todoArr.forEach((el) => {

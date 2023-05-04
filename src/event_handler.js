@@ -1,7 +1,7 @@
 import { renderDOM, get, deleteMaincontent, createNewTodo } from './DOM_module';
 import { addProject } from "./projects";
 import _, { isToday } from "date-fns";
-import { eventHandleAddTodo, todos } from './todo_module';
+import { eventHandleAddTodo, todos, renderTodos } from './todo_module';
 import { check } from 'prettier';
 
 console.log('Events')
@@ -11,16 +11,36 @@ export const events = () => {
  window.addEventListener('keypress', (e) => {
         e.code === '13' ? e.preventDefault() : false;
     });
-    const openSidebar = () => {
-        get.sidebar.classList.toggle('open');
-        get.sidebar.style.display = 'grid';
+
+    window.addEventListener('load', ()=> {
+        for (let i = 0; i < localStorage.length; i++ ) {
+            const todo = JSON.parse(localStorage.getItem(i))
+            i > 2 ? todos.allTodos.push(todo) : false;
         }
+        
+        renderTodos()
+    })
+
+    const openSidebar = () => {
+        if (window.innerWidth < 960) {
+            get.sidebar.classList.toggle('open');
+            get.sidebar.style.display = 'grid';
+        }
+    };
 
     const closeSidebar = () => {
+        if (window.innerWidth < 960) {
         get.sidebar.classList.toggle('open');
         get.sidebar.style.display = "none";
-    }
+    }};
 
+    window.addEventListener('change', () => {
+        if (window.innerWidth > 960) {
+            get.sidebar.classList.toggle('open');
+            get.sidebar.style.display = 'grid';
+        }
+    });
+    
     const filteredList = () => Array.from(get.todoList.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE);
 
     get.weekdaysContainer.addEventListener('click', (e) => {
@@ -40,6 +60,17 @@ export const events = () => {
                 if (todoItem.classList.contains('completed')) {
                     todoItem.classList.toggle('hidden');
                 }
+
+            todos.allTodos.map((item, index)=> {
+                if (`${item.title}-${item.dueDate}` === todoItem.id && !item.completed) {
+                    item.completed = true;
+                    localStorage.setItem(index, JSON.stringify(item));
+                } 
+                else if (`${item.title}-${item.dueDate}` === todoItem.id && item.completed) {
+                    item.completed = false;
+                    localStorage.setItem(index, JSON.stringify(item));
+                }  
+            })   
         } 
     });
 
