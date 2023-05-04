@@ -11,10 +11,20 @@ export const events = () => {
  window.addEventListener('keypress', (e) => {
         e.code === '13' ? e.preventDefault() : false;
     });
+    const openSidebar = () => {
+        get.sidebar.classList.toggle('open');
+        get.sidebar.style.display = 'grid';
+        }
+
+    const closeSidebar = () => {
+        get.sidebar.classList.toggle('open');
+        get.sidebar.style.display = "none";
+    }
 
     const filteredList = () => Array.from(get.todoList.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE);
 
     get.weekdaysContainer.addEventListener('click', (e) => {
+        closeSidebar()
         const weekdayClass = e.target.classList[0];
         filteredList().forEach(child => {
         !child.classList.contains(weekdayClass) ? child.classList.add('hidden') : child.classList.remove('hidden');
@@ -22,6 +32,7 @@ export const events = () => {
     });
 
     get.todoList.addEventListener('click', (e) => {
+        closeSidebar()
         if(e.target.id =='checkbox') {
             const checkbox = e.target;
             const todoItem = checkbox.parentElement;
@@ -45,6 +56,7 @@ export const events = () => {
     })
 
     get.projectListSidebar.addEventListener('click', (e) => {
+        closeSidebar()
         const projectClass = e.target.classList[0];
         filteredList().forEach(child => {
            !child.classList.contains(projectClass) ? child.classList.add('hidden') : child.classList.remove('hidden');
@@ -52,20 +64,24 @@ export const events = () => {
     });
 
     get.openModal.addEventListener('click', () => {
+        closeSidebar()
         get.newTodoModal.classList.remove('hidden');
     });
 
     get.closeModal.addEventListener('click', (e) => {
+        closeSidebar()
         e.preventDefault();
         get.newTodoModal.classList.add('hidden');
     });
 
     get.closeProjectModal.addEventListener('click', (e) => {
+        closeSidebar()
         e.preventDefault();
         get.projectModal.classList.add('hidden');
     });
 
     get.submitTodo.addEventListener('click', (e) => {
+        closeSidebar()
         e.preventDefault();
         eventHandleAddTodo();
         get.newTodoModal.classList.add('hidden');
@@ -73,36 +89,45 @@ export const events = () => {
     
     
     get.saveProject.addEventListener('click', (e) => {
-
+        closeSidebar()
         e.preventDefault();
         addProject.addToList();
         get.projectModal.classList.add('hidden');
     });
 
     get.newProjectBtn.addEventListener('click', () => {
+        closeSidebar()
         get.projectModal.classList.remove('hidden');
     });
 
 
     get.todaySidebar.addEventListener('click', () => {
+
+            closeSidebar()
        filteredList().forEach(child => {
         !child.classList.contains('today') || child.classList.contains('completed') ? child.classList.add('hidden') : child.classList.remove('hidden');
        })
     });
 
     get.upcoming.addEventListener('click', (e) => {
+
+        closeSidebar()
        filteredList().forEach(child => {
          child.classList.contains('completed') ? child.classList.add('hidden') : child.classList.remove('hidden');
         })
     });
 
     get.completedSidebar.addEventListener('click', () => {
+
+        closeSidebar()
         filteredList().forEach(child => {
         child.classList.contains('completed') ? child.classList.remove('hidden') : child.classList.add('hidden');
         })
     });
 
     get.todoList.addEventListener('click', (e) => {
+
+        closeSidebar()
       e.target.classList.contains('new-todo-div') ? 
         e.target.classList.toggle('active') : false;
 
@@ -113,6 +138,17 @@ export const events = () => {
             child.id === 'display-description' ? child.classList.toggle('hidden') : false;
            }
         })
+    })
+
+    
+    get.hamburgerBtn.addEventListener('click', () => {
+        if (!get.sidebar.classList.contains('open')) {
+            openSidebar()
+        }
+        else {
+        closeSidebar()
+        };
+   
     })
 
 };

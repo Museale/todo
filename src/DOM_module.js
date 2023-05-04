@@ -25,6 +25,7 @@ export const get = (() => {
     const submitTodo = document.getElementById('save-todo');
     const saveProject = document.getElementById('save-project');
     const projectSelect  = document.getElementById('project-selection');
+    const sidebar = document.getElementById('sidebar')
     const projects = document.getElementById('projects');
     const projectTitle = document.getElementById('project-title');
     const projectDescription = document.getElementById('project-description');
@@ -51,6 +52,7 @@ export const get = (() => {
       newTodoModal,
       closeModal,
       submitTodo, 
+      sidebar,
       projects,
       projectTitle,
       projectDescription,

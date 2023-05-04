@@ -107,3 +107,101 @@ button:hover, .button:hover {
   display: none;
   visibility: hidden;
 }
+
+
+@media screen and (max-width:1000px) {
+  #sidebar {
+    display: none;
+    z-index: 1;
+    background-color: white;
+
+  }
+  #main-content {
+    grid-column: 1 / span 2;
+    width: 90%;
+    padding: 2rem;
+
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .modal {
+    margin: auto;
+    top: 5%;
+    width: 100%;
+    margin-left: 2%;
+    z-index: 10;
+    
+  }
+  .modal > form {
+    width: 90%;
+  }
+
+  
+}
+
+
+
+@media screen and (max-width:700px) {
+  #nav {
+  width: 110%;
+   justify-self: center;
+  ul > li {
+  margin: 0;
+  font-size: 0.6rem;
+  img {
+    width: 25px;
+  }
+}
+  }
+  #sidebar > ul:nth-child(1) > li,
+  #projects > ul >li {
+    font-size: 0.8rem;
+  } 
+
+  #projects-title > h2 {
+    font-size: 0.9rem;
+  }
+
+
+  #main-content {
+    font-size: 0rem;
+    
+    .new-todo-div > #display-title{
+      font-size: 0.7rem;
+      margin-top: 10px;
+    }
+    #week {
+      font-size: 0.8rem;
+
+    }
+
+  }
+  .modal > form {
+    #title-input::placeholder,
+    #project-title::placeholder{
+      font-size: 0.9rem;
+    }
+    
+    #description-input::placeholder,
+    #project-description::placeholder {
+      font-size: 0.7 !important;
+    }
+  }
+  .modal > form > input,
+  input::placeholder {
+    width: fit-content;
+  }
+   select, 
+   .modal > form > #save-todo,
+   .modal > form >#save-project {
+      font-size: 0.6rem;
+    width: 5.5rem;
+    height: 2rem;
+    padding: 0;
+  }
+  #input-date {
+    width: 60px;
+  }
+
+}

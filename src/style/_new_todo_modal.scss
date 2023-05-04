@@ -1,14 +1,17 @@
 @import '_mixins_variables';
 
-#modal {
-    box-shadow: none;
+
+.modal {
+    position: absolute;
+    top: 20%;
+    margin-left: 30%;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal > form {
- position: absolute;
  background-color: white;
-   top: 20%;
-   margin-left: 30%;
+
     justify-self: center;
     align-content: center;
     justify-content: center;
@@ -23,9 +26,7 @@
     box-shadow: 2px 2px 12px $border-colour
 }
 
-#project-modal {
-    margin-left: -23%;
-}
+
 label  { 
     visibility: hidden;
     display: none;
