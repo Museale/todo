@@ -89,13 +89,6 @@ button:hover, .button:hover {
   }
 }
 
-#hamburger-menu-btn > img,
-#new-todo-nav-btn > img,
-#new-project-btn > img {
-  width: 30px;
-  filter: drop-shadow(rgb(250, 250, 250) 1px 1px 1px);
-}
-
 .active-page  {
   @include standardBorder;
 
@@ -144,16 +137,26 @@ button:hover, .button:hover {
 
 @media screen and (max-width:700px) {
   #nav {
-  width: 110%;
+  width: 104%;
    justify-self: center;
-  ul > li {
-  margin: 0;
-  font-size: 0.6rem;
-  img {
-    width: 25px;
+   margin: 0;
+   padding: 0;
+      ul > li {
+      margin: 0;
+      font-size: 0.6rem;
+      #hamburger-menu-btn > img {
+          width: 30px;
+        }
+      #new-todo-nav-btn > img {
+        width: 23px;
+      }
+    }
   }
-}
+
+  #new-project-btn > img {
+    width: 28px;
   }
+  
   #sidebar > ul:nth-child(1) > li,
   #projects > ul >li {
     font-size: 0.8rem;

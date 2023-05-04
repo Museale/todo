@@ -31,13 +31,17 @@ export const events = () => {
     const closeSidebar = () => {
         if (window.innerWidth < 960) {
         get.sidebar.classList.toggle('open');
-        get.sidebar.style.display = "none";
+        get.sidebar.style.display = 'none';
     }};
 
     window.addEventListener('change', () => {
         if (window.innerWidth > 960) {
             get.sidebar.classList.toggle('open');
             get.sidebar.style.display = 'grid';
+        }
+        if (window.innerWidth < 960) {
+            get.sidebar.classList.toggle('open');
+            get.sidebar.style.display = 'none';
         }
     });
     
@@ -79,7 +83,11 @@ export const events = () => {
             const toDelete = e.target;
             const todoItem = toDelete.parentElement;
             todos.allTodos.forEach((todo, index) => {
-                todoItem.id === `${todo.title}-${todo.dueDate}` ? todos.deleteTodoItem(index) : false;
+                if (todoItem.id === `${todo.title}-${todo.dueDate}`) {
+                    todos.deleteTodoItem(index);
+                    localStorage.removeItem(index);
+                } 
+                todos.saveInLocalStorage();
             })
             console.log(todos.allTodos)
             todoItem.remove();

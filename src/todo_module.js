@@ -47,7 +47,8 @@ export const todos = (() => {
     deleteTodoItem,
     getTodos,
     addProject,
-    defaultDate
+    defaultDate,
+    saveInLocalStorage
   }
 })();
 

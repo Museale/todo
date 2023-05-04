@@ -1,5 +1,6 @@
-import hamburgerIcon from './icons/Hamburgermenu-icon.png';
-import plusIcon from './icons/plus-circle-icon.png';
+import hamburgerIcon from './icons/menu-hamburger.svg';
+import plusIcon from './icons/light-add-icon.svg';
+import projectAddIcon from './icons/folder-plus-icon.svg'
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
 import getMonth from 'date-fns/getMonth';
@@ -123,7 +124,7 @@ export const renderDOM = (() => {
         get.newTodoNavBtn.appendChild(newTodoBtnImg);
 
         const newProjectBtnImg = new Image();
-        newProjectBtnImg.src = plusIcon;
+        newProjectBtnImg.src = projectAddIcon;
         get.newProjectBtn.appendChild(newProjectBtnImg);
 
     })();
