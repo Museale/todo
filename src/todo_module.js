@@ -5,32 +5,20 @@ console.log('todo');
 
 export const todos = (() => {
 
-  const allTodos = [{title: 'Buy food for cats', description: 'Royal Canine Sterilized wetfood, Hills Metabolic dryfood, and freezerdried chicken treats.', dueDate: '2023-05-23', priority: 'Priority 3', project: 'High Priority'}, {title: 'Study Japanese', description: 'Remember lesson notes that teacher sent by email.', dueDate: '2023-05-02', priority: 'Priority 2', project: 'Personal'}, {title: 'Draw cards for Vilma, Laura and Asta', description: 'Wrap Birthday gifts.', dueDate: '2023-05-02', priority: 'Priority 1', project: 'Personal'}];
-
-  for (let i = 0; i < localStorage.length; i++) {
-    allTodos.push(JSON.parse(localStorage.getItem(i)));
-   
-  }
-
   const todaysTodos = [];
   const defaultDate = new Date().toISOString().substr(0, 10);
 
+  const allTodos = [{title: 'Buy food for cats', description: 'Royal Canine Sterilized wetfood, Hills Metabolic dryfood, and freezerdried chicken treats.', dueDate: defaultDate, priority: 'Priority 3', project: 'High Priority', completed: false}, {title: 'Study Japanese', description: 'Remember lesson notes that teacher sent by email.', dueDate: defaultDate, priority: 'Priority 2', project: 'Personal', completed: false}, {title: 'Draw cards for Vilma, Laura and Asta', description: 'Wrap Birthday gifts.', dueDate: defaultDate, priority: 'Priority 1', project: 'Personal', completed: false}];
+
     const addTodoItem = (todo) => {
       allTodos.push(todo);
-      if (todo.dueDate === defaultDate) {
-        todaysTodos.push(todo);
-      }
-      saveInLocalStorage();
     };
 
     const saveInLocalStorage = () => {
+      localStorage.clear()
       allTodos.forEach((item, index)=> {
         localStorage.setItem(index, JSON.stringify(item))
       })
-    };
-
-    const removeFromLocalStorage = () => {
-
     };
 
     const updateTodoItem = (index, todo) => {
@@ -88,6 +76,7 @@ if (existingTodo) {
   const descriptionElement = document.createElement('div');
       descriptionElement.textContent = todo.description;
       descriptionElement.id = 'display-description';
+      descriptionElement.classList.add('hidden');
 
   const dueDateElement = document.createElement('span');
   const month = new Date(get.due.value);
@@ -152,7 +141,8 @@ export const eventHandleAddTodo = () => {
     description: description,
     dueDate: dueDate,
     priority: priority,
-    project: project
+    project: project,
+    completed: false
   };
 
   todos.addTodoItem(todo);

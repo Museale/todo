@@ -25,6 +25,7 @@ body {
 
 #wrapper {
   display: grid;
+  justify-content: center;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 46px 14fr;
   height: 100vh;

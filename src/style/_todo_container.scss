@@ -26,11 +26,12 @@
 
 .new-todo-div {
     display: grid;
-    grid-template-columns: 20px 48px 1fr 1fr 25px;
-    grid-template-rows: 1fr 1fr;    
+    grid-template-columns: 20px 48px 1.8fr 1fr 25px;
+    grid-template-rows: 0.8fr 1fr;
     padding: 0.2rem;
-    align-items: center;
+    align-items: start;
     border-bottom: 1px $border-colour solid;
+    height: 40px;
         span {
 
             justify-self: end;
@@ -53,6 +54,7 @@
     font-family: monospace !important;
 }
 #display-description {
+    justify-self: start;
     color: rgb(88, 88, 88);
     font-size: 11px;
     font-family: monospace;
@@ -61,7 +63,8 @@
 }
 
 
-#new-todo-div > span::before {
+
+.new-todo-div > span::before {
     content: "Due";
     color: gray;
 }
@@ -141,4 +144,17 @@ grid-row: 1;
     appearance: none;
     clip-path: circle(50% at 50% 50%);
     background-color: rgba(117, 117, 247, 0.678)  !important;
+  }
+
+ .active {
+    height: 120px;
+ 
+    background-color: white;
+
+    
+  }
+
+  .new-todo-div {
+    display: grid;
+    padding: 10px;
   }

@@ -4,10 +4,13 @@ import _, { isToday } from "date-fns";
 import { eventHandleAddTodo, todos } from './todo_module';
 import { check } from 'prettier';
 
-
 console.log('Events')
 
 export const events = () => {
+
+ window.addEventListener('keypress', (e) => {
+        e.code === '13' ? e.preventDefault() : false;
+    });
 
     const filteredList = () => Array.from(get.todoList.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE);
 
@@ -33,9 +36,10 @@ export const events = () => {
         if (e.target.classList.contains('delete-todo')) {
             const toDelete = e.target;
             const todoItem = toDelete.parentElement;
-            todos.allTodos.map((todo, index) => {
-                todoItem.id === `${todo.title}-${todo.dueDate}` ? todos.deleteTodoItem(todo[index]) : false;
+            todos.allTodos.forEach((todo, index) => {
+                todoItem.id === `${todo.title}-${todo.dueDate}` ? todos.deleteTodoItem(index) : false;
             })
+            console.log(todos.allTodos)
             todoItem.remove();
         }
     })
@@ -51,23 +55,26 @@ export const events = () => {
         get.newTodoModal.classList.remove('hidden');
     });
 
-    get.closeModal.addEventListener('click', () => {
+    get.closeModal.addEventListener('click', (e) => {
+        e.preventDefault();
         get.newTodoModal.classList.add('hidden');
     });
 
-    get.closeProjectModal.addEventListener('click', () => {
+    get.closeProjectModal.addEventListener('click', (e) => {
+        e.preventDefault();
         get.projectModal.classList.add('hidden');
     });
 
     get.submitTodo.addEventListener('click', (e) => {
         e.preventDefault();
         eventHandleAddTodo();
-        localStorage.setItem(1, JSON.stringify(todos.allTodos))
         get.newTodoModal.classList.add('hidden');
     });
     
     
-    get.saveProject.addEventListener('click', () => {
+    get.saveProject.addEventListener('click', (e) => {
+
+        e.preventDefault();
         addProject.addToList();
         get.projectModal.classList.add('hidden');
     });
@@ -94,5 +101,18 @@ export const events = () => {
         child.classList.contains('completed') ? child.classList.remove('hidden') : child.classList.add('hidden');
         })
     });
+
+    get.todoList.addEventListener('click', (e) => {
+      e.target.classList.contains('new-todo-div') ? 
+        e.target.classList.toggle('active') : false;
+
+        Array.from(e.target.childNodes).forEach(child => {
+           if (e.target.classList.contains('active')) {
+            child.id === 'display-description' ? child.classList.toggle('hidden') : false;
+           } else if (!e.target.classList.contains('active')){
+            child.id === 'display-description' ? child.classList.toggle('hidden') : false;
+           }
+        })
+    })
 
 };

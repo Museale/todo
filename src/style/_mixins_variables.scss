@@ -1,5 +1,5 @@
 $body-colour: rgba(255, 255, 255, 0.966);
-$border-colour: rgba(128, 128, 128, 0.432);
+$border-colour: rgba(165, 165, 165, 0.192);
 
 @mixin centerAll() {
   justify-content: center;
@@ -9,6 +9,6 @@ $border-colour: rgba(128, 128, 128, 0.432);
 }
 
 @mixin standardBorder() {
-  border: 1px solid rgba(128, 128, 128, 0.432);
+  border: 1px solid rgba(160, 160, 160, 0.151);
   border-radius: 5px;
 }

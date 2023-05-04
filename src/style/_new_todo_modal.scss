@@ -4,31 +4,27 @@
     box-shadow: none;
 }
 
-#modal> form, 
-.modal {
-    position: absolute;
-    left: 40%;
-    top: 38%;
-    margin-left: -150px;
-    margin-top: -150px;
+.modal > form {
+ position: absolute;
+ background-color: white;
+   top: 20%;
+   margin-left: 30%;
     justify-self: center;
-    align-self: center;
     align-content: center;
     justify-content: center;
-    background-color: white;
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-row: repeat(6, 1fr);
-    justify-content: center;
-    align-items: center;
+
     border-radius: 5px;
     width: 550px;
     gap: 3px;
     padding: 1.2rem;
-    position: absolute;
-    box-shadow: 2px 2px 12px rgb(190, 189, 189);
-  
-  
+    box-shadow: 2px 2px 12px $border-colour
+}
+
+#project-modal {
+    margin-left: -23%;
 }
 label  { 
     visibility: hidden;
@@ -67,7 +63,7 @@ label  {
 }
 
 #modal  > form >input,
-#project-modal > input {
+#project-modal > form > input {
     height: 40px;
     border: none;
     outline: none;
@@ -75,7 +71,7 @@ label  {
 }
 
 #modal > form > #description-input:-internal-autofill-selected,
-#project-modal > #project-description:-internal-autofill-selected{ 
+#project-modal > form > #project-description:-internal-autofill-selected{ 
     appearance: none;
     outline:none;
     background-color: white !important;
@@ -114,8 +110,8 @@ select {
     grid-row: 6;
 }
 
-#modal  > form > #save-todo,
-#save-project {
+.modal  > form > #save-todo,
+.modal > form > #save-project {
     grid-row: 6;
     grid-column: 4;
     border: 1px solid $body-colour;
