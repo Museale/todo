@@ -54,7 +54,6 @@ button:hover, .button:hover {
 }
 
 #sidebar {
-  // @include standardBorder;
   border-right: 1px solid $border-colour;
   grid-row: 2;
   grid-column: 1;
@@ -156,7 +155,7 @@ button:hover, .button:hover {
   #new-project-btn > img {
     width: 28px;
   }
-  
+
   #sidebar > ul:nth-child(1) > li,
   #projects > ul >li {
     font-size: 0.8rem;

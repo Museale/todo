@@ -1,11 +1,6 @@
 import { get, deleteMaincontent } from "./DOM_module";
 import { events } from "./event_handler";
 
-
-console.log('proj')
-
-
-
 export const newProject = (project, description)=> {
     const projectTodo = [];
     return{

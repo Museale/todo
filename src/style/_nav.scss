@@ -1,5 +1,5 @@
 #nav {
-  background-color: #ffffff33;
+  background-color: #f8acac;
   grid-row: 1;
   grid-column: 1 / -1;
   border-bottom: 1px solid $border-colour;
@@ -7,6 +7,8 @@
   align-items: center;
   padding: 0.5rem 0 0.5rem 0;
   height: 35px;
+  color: white;
+  z-index: 10;
   ul {
     display: grid;
     grid-template-columns: 60px 50px 10fr 150px 50px;
@@ -15,6 +17,7 @@
     font-family: monospace;
     font-size: 14px;
     margin: 0 1rem 0 1rem;
+    color: white;
     
   }
   button {

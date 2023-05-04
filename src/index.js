@@ -5,7 +5,6 @@ import { events } from './event_handler';
 import { parse } from 'date-fns';
 
 const render = (() => {
-    console.log('index')
     events();
     renderTodos();
 })();

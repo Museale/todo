@@ -4,8 +4,6 @@ import _, { isToday } from "date-fns";
 import { eventHandleAddTodo, todos, renderTodos } from './todo_module';
 import { check } from 'prettier';
 
-console.log('Events')
-
 export const events = () => {
 
  window.addEventListener('keypress', (e) => {
@@ -22,26 +20,21 @@ export const events = () => {
     })
 
     const openSidebar = () => {
-        if (window.innerWidth < 960) {
             get.sidebar.classList.toggle('open');
             get.sidebar.style.display = 'grid';
-        }
     };
 
     const closeSidebar = () => {
-        if (window.innerWidth < 960) {
         get.sidebar.classList.toggle('open');
         get.sidebar.style.display = 'none';
-    }};
+    };
 
     window.addEventListener('change', () => {
         if (window.innerWidth > 960) {
-            get.sidebar.classList.toggle('open');
-            get.sidebar.style.display = 'grid';
+            openSidebar();
         }
         if (window.innerWidth < 960) {
-            get.sidebar.classList.toggle('open');
-            get.sidebar.style.display = 'none';
+          closeSidebar();
         }
     });
     
@@ -89,7 +82,6 @@ export const events = () => {
                 } 
                 todos.saveInLocalStorage();
             })
-            console.log(todos.allTodos)
             todoItem.remove();
         }
     })

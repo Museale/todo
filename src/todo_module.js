@@ -2,7 +2,6 @@ import { check } from "prettier";
 import { get, renderDOM } from "./DOM_module";
 import { events } from "./event_handler";
 import { newProject } from "./projects";
-console.log('todo');
 
 export const todos = (() => {
 

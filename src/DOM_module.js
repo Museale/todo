@@ -9,7 +9,6 @@ import { newTodo, todos, eventHandleAddTodo } from './todo_module';
 import { getYear } from 'date-fns';
 import { roundToNearestMinutesWithOptions } from 'date-fns/fp';
 
-console.log('dom')
 
 export const get = (() => {
     const mainContent = document.querySelector('#main-content');
