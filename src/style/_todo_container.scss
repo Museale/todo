@@ -26,7 +26,7 @@
 
 .new-todo-div {
     display: grid;
-    grid-template-columns: 20px 48px 1.8fr 1fr 25px;
+    grid-template-columns: 20px 48px 1.8fr 1fr 25px 25px;
     grid-template-rows: 0.8fr 1fr;
     padding: 0.2rem;
     align-items: start;
@@ -62,16 +62,9 @@
     grid-column: 3;
 }
 
-
-
-.new-todo-div > span::before {
-    content: "Due";
-    color: gray;
-}
-
 .delete-todo {
     grid-row: 1;
-    grid-column: 5;  
+    grid-column: 6;  
     display: flex;
     justify-self: end;
     border-radius: 5px;
@@ -93,11 +86,12 @@ grid-row: 1;
 
 #pri-element {
     grid-row: 2;
-    grid-column: 5;
+    grid-column: 6;
     justify-self: flex-end;
     align-self: center;
     font-family: monospace;
     color: rgb(148, 144, 144);
+
 }
 
 .green::after,
@@ -125,7 +119,7 @@ grid-row: 1;
 }
 #proj-element {
     grid-row: 2;
-    grid-column: 4;
+    grid-column: 4 / span 2;
     font-family: monospace;
     color: gray;
     justify-self: flex-end;
@@ -156,5 +150,21 @@ grid-row: 1;
 
   .new-todo-div {
     display: grid;
-    padding: 10px;
+    padding: 15px;
+  }
+
+
+  #edit-todo {  
+    background-image: url('/src/icons/2205199_dot_hide_menu_more_icon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    width: 15px;
+    height: 15px;
+    grid-column: 5;
+    color: gray;
+    padding: 0;
+    justify-self: flex-end;
+ 
   }

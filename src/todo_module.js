@@ -94,19 +94,23 @@ if (existingTodo) {
       checkbox.id = 'checkbox';
 
   const priorityElement = document.createElement('div');
+  console.log(todo.priority)
     priorityElement.id = 'pri-element'
     switch(true) {
-      case get.priority.value === 'Priority 1' : priorityElement.classList.add('green');
+      case get.priority.value === 'Priority 1' || todo.priority === 'Priority 1' : priorityElement.classList.add('green');
       break;
-      case get.priority.value === 'Priority 2' : priorityElement.classList.add('orange');
+      case get.priority.value == 'Priority 2' || todo.priority === 'Priority 2': priorityElement.classList.add('orange');
       break;
-      case get.priority.value === 'Priority 3' : priorityElement.classList.add('red');
+      case get.priority.value == 'Priority 3' || todo.priority === 'Priority 3': priorityElement.classList.add('red');
       break;
     }
 
   const projectElement = document.createElement('div');
-    projectElement.textContent = get.projectSelect.value;
+    projectElement.textContent = todo.project || get.projectSelect.value;
     projectElement.id = 'proj-element'
+
+  const editTodoBtn = document.createElement('button');
+  editTodoBtn.id = 'edit-todo';
 
   if (projectElement.textContent === 'Project') {
     projectElement.classList.add('hidden');
@@ -123,7 +127,7 @@ if (existingTodo) {
     todoElement.classList.remove('completed');
     todoElement.classList.remove('hidden')
   }
-  const todoArr = [checkbox, titleElement, descriptionElement, dueDateElement, deleteTodoButtonElement, priorityElement, projectElement];
+  const todoArr = [checkbox, titleElement, descriptionElement, dueDateElement, deleteTodoButtonElement, priorityElement, projectElement, editTodoBtn];
 
   todoArr.forEach((el) => {
       todoElement.appendChild(el);

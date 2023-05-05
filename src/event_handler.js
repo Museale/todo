@@ -6,7 +6,7 @@ import { check } from 'prettier';
 
 export const events = () => {
 
- window.addEventListener('keypress', (e) => {
+    window.addEventListener('keypress', (e) => {
         e.code === '13' ? e.preventDefault() : false;
     });
 
@@ -26,14 +26,14 @@ export const events = () => {
     };
 
     const closeSidebar = () => {
-        if (window.innerWidth > 960){
+        if (window.innerWidth < 960){
         get.sidebar.classList.toggle('open');
         get.sidebar.style.display = 'none';
         }
     };
 
     window.addEventListener('resize', () => {
-        if(get.sidebar.classList.contains('open')) {
+        if(!get.sidebar.classList.contains('open')) {
             openSidebar();
         }
         if (window.innerWidth < 960) {
@@ -55,8 +55,8 @@ export const events = () => {
     });
 
     get.todoList.addEventListener('click', (e) => {
-        closeSidebar()
-        if(e.target.id =='checkbox') {
+   
+        if(e.target.id ==='checkbox') {
             const checkbox = e.target;
             const todoItem = checkbox.parentElement;
             todoItem.classList.toggle('completed');
@@ -75,7 +75,40 @@ export const events = () => {
                 }  
             })   
         } 
-    });
+        if (e.target.id === 'edit-todo') {
+            const editBtn = e.target;
+            const todoItem = editBtn.parentElement;
+            get.newTodoModal.classList.remove('hidden');
+
+            const displayTitle = document.querySelectorAll('#display-title');
+            const displayDescription = document.querySelectorAll('#display-description');
+            const displayProject = get.projectSelect;
+            const displayPriority = get.priority;
+    
+
+            Array.from(displayTitle).forEach(title => {
+               const todoItemName = Array.from(todoItem.id.split('-')); 
+                if (title.textContent === todoItemName[0]) {
+                    get.title.value = title.textContent;
+
+                }
+            });
+            Array.from(displayDescription).forEach(description => {
+                if (todoItem == description.parentElement) {
+                    get.description.value = description.textContent;
+                }
+            });
+            Array.from(displayProject).forEach(project => {
+                if(todoItem == project.parentElement){
+                    get.projectSelect.value = project.textContent;
+                }
+            });
+            Array.from(displayPriority).forEach(priority => {
+                if(todoItem == priority.parentElement){
+                    get.priority.value = priority.textContent;
+                }
+            });
+        }});
 
     get.todoList.addEventListener('click', (e) => {
         if (e.target.classList.contains('delete-todo')) {
@@ -163,7 +196,6 @@ export const events = () => {
     });
 
     get.todoList.addEventListener('click', (e) => {
-
         closeSidebar()
       e.target.classList.contains('new-todo-div') ? 
         e.target.classList.toggle('active') : false;
