@@ -15,9 +15,9 @@ export const get = (() => {
     const weekdaysContainer = document.getElementById('week');
     const todoContainer = document.getElementById('todo-container');
     const hamburgerBtn = document.getElementById('hamburger-menu-btn');
-    const newTodoNavBtn = document.getElementById('new-todo-nav-btn');
     const newProjectBtn = document.getElementById('new-project-btn');
     const openModal = document.getElementById('new-todo-nav-btn');
+    const newTodoForm = document.getElementById('todo-form');
     const projectModal = document.getElementById('project-modal');
     const newTodoModal = document.getElementById('modal');
     const closeModal = document.getElementById('close-modal');
@@ -46,7 +46,6 @@ export const get = (() => {
       weekdaysContainer,
       todoContainer,
       hamburgerBtn,
-      newTodoNavBtn,
       newProjectBtn,
       openModal,
       newTodoModal,
@@ -70,7 +69,8 @@ export const get = (() => {
       closeProjectModal,
       checkbox, 
       todoList,
-      deleteTodo
+      deleteTodo,
+      newTodoForm
     };
   })();
   
@@ -120,7 +120,7 @@ export const renderDOM = (() => {
         
         const newTodoBtnImg = new Image();
         newTodoBtnImg.src = plusIcon;
-        get.newTodoNavBtn.appendChild(newTodoBtnImg);
+        get.openModal.appendChild(newTodoBtnImg);
 
         const newProjectBtnImg = new Image();
         newProjectBtnImg.src = projectAddIcon;

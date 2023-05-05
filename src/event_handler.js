@@ -78,19 +78,18 @@ export const events = () => {
         if (e.target.id === 'edit-todo') {
             const editBtn = e.target;
             const todoItem = editBtn.parentElement;
+            todoItem.classList.add('edited');
             get.newTodoModal.classList.remove('hidden');
 
             const displayTitle = document.querySelectorAll('#display-title');
             const displayDescription = document.querySelectorAll('#display-description');
-            const displayProject = get.projectSelect;
-            const displayPriority = get.priority;
-    
+            const displayProject = document.querySelectorAll('#proj-element');
+            const displayPriority = document.querySelectorAll('#pri-element');
 
             Array.from(displayTitle).forEach(title => {
                const todoItemName = Array.from(todoItem.id.split('-')); 
                 if (title.textContent === todoItemName[0]) {
                     get.title.value = title.textContent;
-
                 }
             });
             Array.from(displayDescription).forEach(description => {
@@ -105,7 +104,15 @@ export const events = () => {
             });
             Array.from(displayPriority).forEach(priority => {
                 if(todoItem == priority.parentElement){
-                    get.priority.value = priority.textContent;
+                    switch (true) {
+                        case priority.classList.contains('green') : get.priority.value = 'Priority 1';
+                        break;
+                        case priority.classList.contains('orange') : get.priority.value = 'Priority 2';
+                        break;
+                        case priority.classList.contains('red') : get.priority.value = 'Priority 3';
+                        break;
+
+                    }
                 }
             });
         }});
@@ -136,7 +143,16 @@ export const events = () => {
     get.openModal.addEventListener('click', () => {
         closeSidebar()
         get.newTodoModal.classList.remove('hidden');
-    });
+        const filteredNewTodoForm = Array.from(get.newTodoForm.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE);
+        filteredNewTodoForm.forEach(child => {
+        child.id === 'title-input' ? child.value = '' : false;
+        child.id === 'description-input' ? child.value = '' : false;
+        child.id === 'input-date' ? child.value = todos.defaultDate : false;
+        get.projectSelect.value = 'Project';
+        get.priority.value = 'Priority';
+    })
+})
+     
 
     get.closeModal.addEventListener('click', (e) => {
         closeSidebar()

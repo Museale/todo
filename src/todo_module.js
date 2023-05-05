@@ -94,7 +94,7 @@ if (existingTodo) {
       checkbox.id = 'checkbox';
 
   const priorityElement = document.createElement('div');
-  console.log(todo.priority)
+
     priorityElement.id = 'pri-element'
     switch(true) {
       case get.priority.value === 'Priority 1' || todo.priority === 'Priority 1' : priorityElement.classList.add('green');
