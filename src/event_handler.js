@@ -1,6 +1,6 @@
 import { renderDOM, get, deleteMaincontent, createNewTodo } from './DOM_module';
 import { addProject } from "./projects";
-import _, { isToday } from "date-fns";
+import _, { getOverlappingDaysInIntervals, isToday } from "date-fns";
 import { eventHandleAddTodo, todos, renderTodos } from './todo_module';
 import { check } from 'prettier';
 
@@ -20,21 +20,27 @@ export const events = () => {
     })
 
     const openSidebar = () => {
+        if (window.innerWidth < 960){
             get.sidebar.classList.toggle('open');
-            get.sidebar.style.display = 'grid';
+            get.sidebar.style.display = 'grid';}
     };
 
     const closeSidebar = () => {
+        if (window.innerWidth > 960){
         get.sidebar.classList.toggle('open');
         get.sidebar.style.display = 'none';
+        }
     };
 
-    window.addEventListener('change', () => {
-        if (window.innerWidth > 960) {
+    window.addEventListener('resize', () => {
+        if(get.sidebar.classList.contains('open')) {
             openSidebar();
         }
         if (window.innerWidth < 960) {
-          closeSidebar();
+            get.sidebar.style.display = 'none';
+        }
+        if (window.innerWidth > 960) {
+            get.sidebar.style.display = 'grid';
         }
     });
     
