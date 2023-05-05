@@ -14,10 +14,9 @@ export const events = () => {
         for (let i = 0; i < localStorage.length; i++ ) {
             const todo = JSON.parse(localStorage.getItem(i))
             i > 2 ? todos.allTodos.push(todo) : false;
-        }
-        
+        } 
         renderTodos()
-    })
+    });
 
     const openSidebar = () => {
         if (window.innerWidth < 960){
@@ -51,7 +50,7 @@ export const events = () => {
         const weekdayClass = e.target.classList[0];
         filteredList().forEach(child => {
         !child.classList.contains(weekdayClass) ? child.classList.add('hidden') : child.classList.remove('hidden');
-        })
+        });
     });
 
     get.todoList.addEventListener('click', (e) => {
@@ -73,8 +72,8 @@ export const events = () => {
                     item.completed = false;
                     localStorage.setItem(index, JSON.stringify(item));
                 }  
-            })   
-        } 
+            });   
+        };
         if (e.target.id === 'edit-todo') {
             const editBtn = e.target;
             const todoItem = editBtn.parentElement;
@@ -111,11 +110,20 @@ export const events = () => {
                         break;
                         case priority.classList.contains('red') : get.priority.value = 'Priority 3';
                         break;
-
                     }
                 }
             });
-        }});
+           
+            todos.allTodos.forEach((todo, index) => {
+                if (todoItem.id === `${todo.title}-${todo.dueDate}`) {
+                    todos.deleteTodoItem(index);
+                    localStorage.removeItem(index);
+                } 
+                todos.saveInLocalStorage();
+            });
+            todoItem.remove();
+        };
+    });
 
     get.todoList.addEventListener('click', (e) => {
         if (e.target.classList.contains('delete-todo')) {
@@ -127,10 +135,10 @@ export const events = () => {
                     localStorage.removeItem(index);
                 } 
                 todos.saveInLocalStorage();
-            })
+            });
             todoItem.remove();
-        }
-    })
+        };
+    });
 
     get.projectListSidebar.addEventListener('click', (e) => {
         closeSidebar()
@@ -150,10 +158,9 @@ export const events = () => {
         child.id === 'input-date' ? child.value = todos.defaultDate : false;
         get.projectSelect.value = 'Project';
         get.priority.value = 'Priority';
-    })
-})
+        })
+    });
      
-
     get.closeModal.addEventListener('click', (e) => {
         closeSidebar()
         e.preventDefault();
@@ -171,8 +178,7 @@ export const events = () => {
         e.preventDefault();
         eventHandleAddTodo();
         get.newTodoModal.classList.add('hidden');
-    });
-    
+    });  
     
     get.saveProject.addEventListener('click', (e) => {
         closeSidebar()
@@ -186,25 +192,21 @@ export const events = () => {
         get.projectModal.classList.remove('hidden');
     });
 
-
     get.todaySidebar.addEventListener('click', () => {
-
-            closeSidebar()
-       filteredList().forEach(child => {
+        closeSidebar()
+        filteredList().forEach(child => {
         !child.classList.contains('today') || child.classList.contains('completed') ? child.classList.add('hidden') : child.classList.remove('hidden');
        })
     });
 
     get.upcoming.addEventListener('click', (e) => {
-
         closeSidebar()
-       filteredList().forEach(child => {
+        filteredList().forEach(child => {
          child.classList.contains('completed') ? child.classList.add('hidden') : child.classList.remove('hidden');
         })
     });
 
     get.completedSidebar.addEventListener('click', () => {
-
         closeSidebar()
         filteredList().forEach(child => {
         child.classList.contains('completed') ? child.classList.remove('hidden') : child.classList.add('hidden');
@@ -213,7 +215,7 @@ export const events = () => {
 
     get.todoList.addEventListener('click', (e) => {
         closeSidebar()
-      e.target.classList.contains('new-todo-div') ? 
+        e.target.classList.contains('new-todo-div') ? 
         e.target.classList.toggle('active') : false;
 
         Array.from(e.target.childNodes).forEach(child => {
@@ -223,17 +225,14 @@ export const events = () => {
             child.id === 'display-description' ? child.classList.toggle('hidden') : false;
            }
         })
-    })
-
+    });
     
     get.hamburgerBtn.addEventListener('click', () => {
         if (!get.sidebar.classList.contains('open')) {
             openSidebar()
         }
         else {
-        closeSidebar()
+            closeSidebar()
         };
-   
     })
-
 };
