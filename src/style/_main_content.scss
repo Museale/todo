@@ -16,7 +16,6 @@
 }
 
 #week {
-
   @include centerAll;
   grid-row: 1;
   display: grid;
@@ -28,25 +27,24 @@
   font-family: monospace;
 
   div {
-     @include centerAll;
+    @include centerAll;
     gap: 5px;
     display: grid;
     grid-row: 1;
     grid-template-columns: 1fr;
-      a {
-        grid-row: 1;
-        padding-bottom: 0.2rem;
-        width: 40px;
-        text-align: center;
-        border-bottom: 1px solid $border-colour;
-      }
-        div {
-          grid-row: 2;
-        }
+    a {
+      grid-row: 1;
+      padding-bottom: 0.2rem;
+      width: 40px;
+      text-align: center;
+      border-bottom: 1px solid $border-colour;
+    }
+    div {
+      grid-row: 2;
+    }
   }
 }
 
 #todo-container {
-
   grid-row: 2;
 }

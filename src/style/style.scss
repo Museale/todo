@@ -49,8 +49,9 @@ h2 {
   font-family: monospace;
 }
 
-button:hover, .button:hover {
-  cursor: pointer
+button:hover,
+.button:hover {
+  cursor: pointer;
 }
 
 #sidebar {
@@ -88,7 +89,7 @@ button:hover, .button:hover {
   }
 }
 
-.active-page  {
+.active-page {
   @include standardBorder;
 
   height: 100%;
@@ -100,13 +101,11 @@ button:hover, .button:hover {
   visibility: hidden;
 }
 
-
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
   #sidebar {
     display: none;
     z-index: 1;
     background-color: white;
-
   }
   #main-content {
     grid-column: 1 / span 2;
@@ -123,29 +122,24 @@ button:hover, .button:hover {
     width: 100%;
     margin-left: 2%;
     z-index: 10;
-    
   }
   .modal > form {
     width: 90%;
   }
-
-  
 }
 
-
-
-@media screen and (max-width:700px) {
+@media screen and (max-width: 700px) {
   #nav {
-  width: 104%;
-   justify-self: center;
-   margin: 0;
-   padding: 0;
-      ul > li {
+    width: 104%;
+    justify-self: center;
+    margin: 0;
+    padding: 0;
+    ul > li {
       margin: 0;
       font-size: 0.6rem;
       #hamburger-menu-btn > img {
-          width: 30px;
-        }
+        width: 30px;
+      }
       #new-todo-nav-btn > img {
         width: 23px;
       }
@@ -157,34 +151,31 @@ button:hover, .button:hover {
   }
 
   #sidebar > ul:nth-child(1) > li,
-  #projects > ul >li {
+  #projects > ul > li {
     font-size: 0.8rem;
-  } 
+  }
 
   #projects-title > h2 {
     font-size: 0.9rem;
   }
 
-
   #main-content {
     font-size: 0rem;
-    
-    .new-todo-div > #display-title{
+
+    .new-todo-div > #display-title {
       font-size: 0.7rem;
       margin-top: 10px;
     }
     #week {
       font-size: 0.8rem;
-
     }
-
   }
   .modal > form {
     #title-input::placeholder,
-    #project-title::placeholder{
+    #project-title::placeholder {
       font-size: 0.9rem;
     }
-    
+
     #description-input::placeholder,
     #project-description::placeholder {
       font-size: 0.7 !important;
@@ -194,10 +185,10 @@ button:hover, .button:hover {
   input::placeholder {
     width: fit-content;
   }
-   select, 
-   .modal > form > #save-todo,
-   .modal > form >#save-project {
-      font-size: 0.6rem;
+  select,
+  .modal > form > #save-todo,
+  .modal > form > #save-project {
+    font-size: 0.6rem;
     width: 5.5rem;
     height: 2rem;
     padding: 0;
@@ -205,5 +196,4 @@ button:hover, .button:hover {
   #input-date {
     width: 60px;
   }
-
 }

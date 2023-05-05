@@ -1,137 +1,134 @@
 @import '_mixins_variables';
 
-
 .modal {
-    position: absolute;
-    top: 20%;
-    margin-left: 30%;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 20%;
+  margin-left: 30%;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal > form {
- background-color: white;
+  background-color: white;
 
-    justify-self: center;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  justify-self: center;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 
-    border-radius: 5px;
-    width: 550px;
-    gap: 3px;
-    padding: 1.2rem;
-    box-shadow: 2px 2px 12px $border-colour
+  border-radius: 5px;
+  width: 550px;
+  gap: 3px;
+  padding: 1.2rem;
+  box-shadow: 2px 2px 12px $border-colour;
 }
 
-
-label  { 
-    visibility: hidden;
-    display: none;
+label {
+  visibility: hidden;
+  display: none;
 }
 
-#close-modal, .close-modal {
-   position: absolute;
-   justify-self: flex-end;
-   align-self: flex-start;
-   border: none;
-   appearance: none;
-   background-color: white;
-   cursor: pointer;
-   font-family: monospace;
-   font-weight: bolder;
-   font-size: 15px;
-   color: gray;
-   padding: 10px;
+#close-modal,
+.close-modal {
+  position: absolute;
+  justify-self: flex-end;
+  align-self: flex-start;
+  border: none;
+  appearance: none;
+  background-color: white;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: bolder;
+  font-size: 15px;
+  color: gray;
+  padding: 10px;
 }
 
-#title-input, #project-title {
-    grid-column: 1 / span 3;
-    font-size: 22px;
-    font-weight: bold;
-    font-family: monospace;
-  
+#title-input,
+#project-title {
+  grid-column: 1 / span 3;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: monospace;
 }
 
-#description-input, #project-description {
-    grid-row: 4;
-    grid-column: 1 / span 3;
-    font-size: 12px;
-    font-family: monospace;
-    margin-top: -20px;
+#description-input,
+#project-description {
+  grid-row: 4;
+  grid-column: 1 / span 3;
+  font-size: 12px;
+  font-family: monospace;
+  margin-top: -20px;
 }
 
-#modal  > form >input,
+#modal > form > input,
 #project-modal > form > input {
-    height: 40px;
-    border: none;
-    outline: none;
-    padding: 0.2rem;
+  height: 40px;
+  border: none;
+  outline: none;
+  padding: 0.2rem;
 }
 
 #modal > form > #description-input:-internal-autofill-selected,
-#project-modal > form > #project-description:-internal-autofill-selected{ 
-    appearance: none;
-    outline:none;
-    background-color: white !important;
+#project-modal > form > #project-description:-internal-autofill-selected {
+  appearance: none;
+  outline: none;
+  background-color: white !important;
 }
 
-#modal > form > #priority-btn  {
-    grid-row: 6;
-    grid-column: 3;
-    justify-self: flex-end;
+#modal > form > #priority-btn {
+  grid-row: 6;
+  grid-column: 3;
+  justify-self: flex-end;
 
-    
-    :nth-child(1) {
-        background-color: rgb(239, 241, 243);
-    }
-    :nth-child(2) {
-        background-color: rgb(175, 248, 175);
-    }
-    :nth-child(3) {
-        background-color: rgb(243, 212, 156);
-    }
-    :nth-child(4) {
-        background-color: rgb(241, 132, 132);
-    }
+  :nth-child(1) {
+    background-color: rgb(239, 241, 243);
+  }
+  :nth-child(2) {
+    background-color: rgb(175, 248, 175);
+  }
+  :nth-child(3) {
+    background-color: rgb(243, 212, 156);
+  }
+  :nth-child(4) {
+    background-color: rgb(241, 132, 132);
+  }
 }
 select {
-    padding: 8px;
-    border-radius: 5px;
-    border: $border-colour 1px solid;
-    font-family: monospace;
-    color:rgb(83, 83, 83);
-    cursor: pointer;
-    width: 130px;
+  padding: 8px;
+  border-radius: 5px;
+  border: $border-colour 1px solid;
+  font-family: monospace;
+  color: rgb(83, 83, 83);
+  cursor: pointer;
+  width: 130px;
 }
 #project-btn {
-    grid-column: 2;
-    grid-row: 6;
+  grid-column: 2;
+  grid-row: 6;
 }
 
-.modal  > form > #save-todo,
+.modal > form > #save-todo,
 .modal > form > #save-project {
-    grid-row: 6;
-    grid-column: 4;
-    border: 1px solid $body-colour;
-    border-radius: 5px;
-    width: 80%;
-    background-color: rgb(226, 253, 255);
-    justify-self: flex-end;
-      color: rgb(83, 82, 82);
-        font-family: monospace;
-        cursor: pointer;
+  grid-row: 6;
+  grid-column: 4;
+  border: 1px solid $body-colour;
+  border-radius: 5px;
+  width: 80%;
+  background-color: rgb(226, 253, 255);
+  justify-self: flex-end;
+  color: rgb(83, 82, 82);
+  font-family: monospace;
+  cursor: pointer;
 }
 
 #input-date {
-    grid-row: 6;
-    grid-column: 1;
-    width: 110px;
-    color: gray;
-    font-family: monospace;
-    cursor: pointer;
+  grid-row: 6;
+  grid-column: 1;
+  width: 110px;
+  color: gray;
+  font-family: monospace;
+  cursor: pointer;
 }
-
-
