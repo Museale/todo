@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link src="./style.scss" />
+    <title>Todo List</title>
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav id="nav">
+        <ul>
+          <li>
+            <span><button id="hamburger-menu-btn"></button></span>
+          </li>
+
+          <li>
+            <span
+              ><button id="new-todo-nav-btn" class="new-todo"></button
+            ></span>
+          </li>
+          <li>
+            <span><a href="#">Add Todo</a></span>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="sidebar">
+        <ul>
+          <li id="today">
+            <span><a href="#">Today</a></span>
+          </li>
+          <li id="upcoming">
+            <span><a href="#">Upcoming</a></span>
+          </li>
+          <li id="completed">
+            <span><a href="#">Completed</a></span>
+          </li>
+        </ul>
+        <ul id="projects">
+          <span id="projects-title" class="button">
+            <h2>Projects</h2>
+          </span>
+          <button id="new-project-btn"></button>
+          <ul id="project-list">
+            <!-- <li><span><a href="#" class="personal">Personal</a></span></li>
+                        <li><span><a href="#" class="work">Work</a></span></li>
+                        <li><span><a href="#" class="high_priority">High Priority</a></span></li> -->
+          </ul>
+        </ul>
+      </div>
+
+      <div id="main-content">
+        <div id="week"></div>
+        <div id="todo-container">
+          <ul id="todo-list">
+            <li class="todo-item"></li>
+          </ul>
+        </div>
+      </div>
+      <div id="modal" class="modal hidden">
+        <form action="" id="todo-form">
+          <button id="close-modal" class="close-modal">X</button>
+          <label for="title">title</label>
+          <input
+            type="text"
+            placeholder="Task Name"
+            name="title"
+            id="title-input"
+          />
+          <label for="description">Description</label>
+          <input type="text" placeholder="Description" id="description-input" />
+          <label for="date">Date</label>
+          <input type="date" name="date" id="input-date" />
+          <div id="project-btn">
+            <select id="project-selection">
+              <option id="project-default" selected>Project</option>
+              <!-- <option id="personal-opt">Personal</option>
+                                    <option id="work-opt">Work</option>
+                                    <option id="high-priority-opt">High Priority</option> -->
+            </select>
+          </div>
+          <div id="priority-btn">
+            <select id="priority">
+              <option id="Default" selected>Priority</option>
+              <option id="green">Priority 1</option>
+              <option id="orange">Priority 2</option>
+              <option id="red">Priority 3</option>
+            </select>
+          </div>
+          <label for="save-todo"></label>
+          <input type="submit" id="save-todo" name="save-todo" class="save" />
+        </form>
+      </div>
+
+      <div id="project-modal" class="modal hidden">
+        <form action="">
+          <button id="close-project-modal" class="close-modal">X</button>
+          <label for="title">Title</label>
+          <input
+            type="text"
+            placeholder="Project Name"
+            name="title"
+            id="project-title"
+          />
+          <label for="description">Description</label>
+          <input
+            type="text"
+            placeholder="Description"
+            id="project-description"
+          />
+          <label for="save-project"></label>
+          <input
+            type="submit"
+            id="save-project"
+            name="save-project"
+            class="save"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
