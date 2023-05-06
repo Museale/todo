@@ -60,7 +60,8 @@
   grid-column: 3;
 }
 
-.delete-todo {
+.delete-todo,
+.delete-project {
   grid-row: 1;
   grid-column: 6;
   display: flex;
@@ -71,6 +72,14 @@
   background: white;
   text-align: right;
   padding: 0;
+}
+
+#sidebar ul > li > .delete-project {
+  padding: 0;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  font-size: 11px;
 }
 
 #date {

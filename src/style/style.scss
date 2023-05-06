@@ -71,6 +71,7 @@ button:hover,
     align-self: flex-start;
   }
   ul > li {
+    display: grid;
     border-bottom: 1px solid $border-colour;
   }
   h2 {
@@ -196,4 +197,11 @@ button:hover,
   #input-date {
     width: 60px;
   }
+}
+
+#project-description-sidebar {
+  font-family: monospace;
+  color: gray;
+  font-size: smaller;
+  padding: 0.5rem 0.5rem 0.5rem 0;
 }

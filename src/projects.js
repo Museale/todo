@@ -1,52 +1,110 @@
-import { get, deleteMaincontent } from './DOM_module';
+import { get } from './DOM_module';
 import { events } from './event_handler';
+import { todos } from './todo_module';
 
-export const newProject = (project, description) => {
-  const projectTodo = [];
-  return {
-    projectTodo,
-    project,
-    description,
+export const projects = (() => {
+  const projectArray = [
+    {
+      title: 'Personal',
+      description: 'These are my personal todos',
+    },
+    {
+      title: 'Work',
+      description: '',
+    },
+    {
+      title: 'Hobby',
+      description: 'Drawing, painting, playing music.',
+    },
+  ];
+
+  const addprojectItem = (project) => {
+    projectArray.push(project);
+    saveProjectInLocalStorage();
   };
-};
 
-export const addProject = (() => {
-  const addToList = () => {
-    const projectArray = [];
-    const projectId = `${get.projectTitle.value}`;
+  const saveProjectInLocalStorage = () => {
+    todos.saveInLocalStorage();
+    projectArray.forEach((item, index) => {
+      localStorage.setItem('project' + index, JSON.stringify(item));
+    });
+  };
+
+  const getProjects = () => {
+    return projectArray;
+  };
+
+  const deleteProjectItem = (index) => {
+    projectArray.splice(index, 1);
+  };
+
+  return {
+    projectArray,
+    addprojectItem,
+    getProjects,
+    saveProjectInLocalStorage,
+    deleteProjectItem,
+  };
+})();
+
+export const renderProjects = () => {
+  const projectListUl = get.projectListSidebar;
+  const project = projects.getProjects();
+
+  const displayProjects = (project) => {
+    const projectId = `${project.title.toLowerCase().split(' ').join('-')}`;
     const existingProject = document.getElementById(projectId);
 
     if (existingProject) {
       return;
     }
-    get.projectListSidebar.childNodes.forEach((child) => {
-      if (child.nodeName !== '#text') {
-        projectArray.push(child);
-      }
-    });
 
-    const listItem = document.createElement('li');
-    listItem.id = get.projectTitle.value.toLowerCase().split(' ').join('-');
+    const projectElement = document.createElement('li');
+    projectElement.id = projectId;
 
-    const listSpan = document.createElement('span');
+    const displayProjectDescription = document.createElement('div');
+    displayProjectDescription.textContent = project.description;
+    displayProjectDescription.classList.add('hidden');
+    displayProjectDescription.id = 'project-description-sidebar';
+
+    const projectDeleteBtn = document.createElement('button');
+    projectDeleteBtn.textContent = 'X';
+    projectDeleteBtn.id = project.title + '-delete';
+    projectDeleteBtn.classList.add('delete-project');
+
     const listAnchor = document.createElement('a');
-    const projectSelection = document.createElement('option');
-    projectSelection.textContent = get.projectTitle.value;
     listAnchor.href = '#';
-    listAnchor.classList.add(listItem.id);
-    listItem.appendChild(listSpan);
-    listItem.appendChild(listAnchor);
-    listAnchor.textContent = get.projectTitle.value;
-    get.projectListSidebar.appendChild(listItem);
-    projectArray.push(listItem);
-    get.projectSelect.appendChild(projectSelection);
+    listAnchor.classList.add(projectElement.id);
+    listAnchor.textContent = project.title;
 
+    const projectSelection = document.createElement('option');
+    projectSelection.textContent = project.title;
+
+    projectElement.appendChild(listAnchor);
+    projectElement.appendChild(projectDeleteBtn);
+    projectListUl.appendChild(projectElement);
+    get.projectSelect.appendChild(projectSelection);
+    if (project.description !== '') {
+      projectElement.appendChild(displayProjectDescription);
+    }
     return {
-      listItem,
-      projectArray,
+      projectElement,
     };
   };
-  return {
-    addToList,
+  project.forEach((project) => {
+    displayProjects(project);
+  });
+};
+
+export const eventHandleAddProject = () => {
+  const title = get.projectTitle.value;
+  const description = get.projectDescription.value;
+
+  const project = {
+    title: title,
+    description: description,
   };
-})();
+
+  projects.addprojectItem(project);
+  renderProjects();
+};

@@ -1,5 +1,5 @@
-import { renderDOM, get, deleteMaincontent, createNewTodo } from './DOM_module';
-import { addProject } from './projects';
+import { renderDOM, get, createNewTodo } from './DOM_module';
+import { projects, eventHandleAddProject, renderProjects } from './projects';
 import _, { getOverlappingDaysInIntervals, isToday } from 'date-fns';
 import { eventHandleAddTodo, todos, renderTodos } from './todo_module';
 import { check } from 'prettier';
@@ -10,7 +10,17 @@ export const events = () => {
   });
 
   window.addEventListener('load', () => {
-    for (let i = 0; i < localStorage.length; i++) {
+    const keys = Object.keys(localStorage);
+    const todoKeys = keys.filter((key) => !isNaN(key));
+    const projectKeys = keys.filter((key) => key.startsWith('project'));
+
+    for (let i = 0; i < projectKeys.length; i++) {
+      const project = JSON.parse(localStorage.getItem(projectKeys[i]));
+      i > 2 ? projects.projectArray.push(project) : false;
+    }
+    renderProjects();
+
+    for (let i = 0; i < todoKeys.length; i++) {
       const todo = JSON.parse(localStorage.getItem(i));
       i > 2 ? todos.allTodos.push(todo) : false;
     }
@@ -46,6 +56,11 @@ export const events = () => {
   const filteredList = () =>
     Array.from(get.todoList.childNodes).filter(
       (node) => node.nodeType === Node.ELEMENT_NODE
+    );
+
+  const filteredProjectList = () =>
+    Array.from(get.projectListSidebar.childNodes).filter(
+      (node) => node.nodeType === node.ELEMENT_NODE
     );
 
   get.weekdaysContainer.addEventListener('click', (e) => {
@@ -134,6 +149,7 @@ export const events = () => {
           localStorage.removeItem(index);
         }
         todos.saveInLocalStorage();
+        projects.saveProjectInLocalStorage();
       });
       todoItem.remove();
     }
@@ -155,12 +171,49 @@ export const events = () => {
   });
 
   get.projectListSidebar.addEventListener('click', (e) => {
+    if (e.target.classList.contains('delete-project')) {
+      const toDelete = e.target;
+      const projectItem = toDelete.parentElement;
+      console.log(e.target, projectItem);
+      projects.projectArray.forEach((project, index) => {
+        if (
+          projectItem.id ===
+          `${project.title.toLowerCase().split(' ').join('-')}`
+        ) {
+          projects.deleteProjectItem(index);
+          localStorage.removeItem('project' + index);
+        }
+        todos.saveInLocalStorage();
+        projects.saveProjectInLocalStorage();
+      });
+      projectItem.remove();
+    }
+  });
+
+  get.projectListSidebar.addEventListener('click', (e) => {
     closeSidebar();
+
     const projectClass = e.target.classList[0];
+    const parent = e.target.parentElement;
     filteredList().forEach((child) => {
       !child.classList.contains(projectClass)
         ? child.classList.add('hidden')
         : child.classList.remove('hidden');
+    });
+
+    filteredProjectList().forEach((child) => {
+      if (child.hasChildNodes()) {
+        Array.from(child.childNodes)
+          .filter((node) => node.nodeType === node.ELEMENT_NODE)
+          .forEach((childEl) => {
+            if (
+              childEl.id === 'project-description-sidebar' &&
+              parent == childEl.parentElement
+            ) {
+              childEl.classList.toggle('hidden');
+            }
+          });
+      }
     });
   });
 
@@ -201,7 +254,7 @@ export const events = () => {
   get.saveProject.addEventListener('click', (e) => {
     closeSidebar();
     e.preventDefault();
-    addProject.addToList();
+    eventHandleAddProject();
     get.projectModal.classList.add('hidden');
   });
 

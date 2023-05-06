@@ -1,10 +1,9 @@
 import { check } from 'prettier';
 import { get, renderDOM } from './DOM_module';
 import { events } from './event_handler';
-import { newProject } from './projects';
+import { newProject, projects } from './projects';
 
 export const todos = (() => {
-  const todaysTodos = [];
   const defaultDate = new Date().toISOString().substr(0, 10);
 
   const allTodos = [
@@ -14,7 +13,7 @@ export const todos = (() => {
         'Royal Canine Sterilized wetfood, Hills Metabolic dryfood, and freezerdried chicken treats.',
       dueDate: defaultDate,
       priority: 'Priority 3',
-      project: 'High Priority',
+      project: 'Personal',
       completed: false,
     },
     {
@@ -22,7 +21,7 @@ export const todos = (() => {
       description: 'Remember lesson notes that teacher sent by email.',
       dueDate: defaultDate,
       priority: 'Priority 2',
-      project: 'Personal',
+      project: 'Hobby',
       completed: false,
     },
     {
@@ -41,7 +40,6 @@ export const todos = (() => {
   };
 
   const saveInLocalStorage = () => {
-    localStorage.clear();
     allTodos.forEach((item, index) => {
       localStorage.setItem(index, JSON.stringify(item));
     });
@@ -65,7 +63,6 @@ export const todos = (() => {
 
   return {
     allTodos,
-    todaysTodos,
     addTodoItem,
     updateTodoItem,
     deleteTodoItem,
@@ -90,7 +87,8 @@ export const renderTodos = () => {
     const todoElement = document.createElement('li');
     todoElement.classList.add(
       todo.dueDate,
-      get.projectSelect.value.toLowerCase().split(' ').join('_'),
+      get.projectSelect.value.toLowerCase().split(' ').join('-'),
+      todo.project.toLowerCase().split(' ').join('-'),
       'new-todo-div'
     );
     todoElement.id = todoId;
@@ -143,6 +141,9 @@ export const renderTodos = () => {
     const projectElement = document.createElement('div');
     projectElement.textContent = todo.project || get.projectSelect.value;
     projectElement.id = 'proj-element';
+    projectElement.classList.add(
+      projectElement.textContent.toLowerCase().split(' ').join('-')
+    );
 
     const editTodoBtn = document.createElement('button');
     editTodoBtn.id = 'edit-todo';
@@ -203,6 +204,5 @@ export const eventHandleAddTodo = () => {
   };
 
   todos.addTodoItem(todo);
-
   renderTodos();
 };

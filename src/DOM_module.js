@@ -140,13 +140,3 @@ export const renderDOM = (() => {
     today,
   };
 })();
-
-export const deleteMaincontent = () => {
-  if (get.todoContainer.hasChildNodes()) {
-    get.todoContainer.childNodes.forEach((e) => {
-      e.nodeType === Node.ELEMENT_NODE && !e.classList.contains('today')
-        ? get.todoContainer.removeChild(e)
-        : false;
-    });
-  }
-};
